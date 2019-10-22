@@ -1,0 +1,17 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.20.227:3366/immanager
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: sjt-88606370
+    druid:
+      initial-size: 2
+logging:
+  config: classpath:logback-spring.xml
+hzsparrow:
+  fu:
+    fileServerType: 1
