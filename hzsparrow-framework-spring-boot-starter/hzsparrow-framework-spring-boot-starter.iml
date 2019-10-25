@@ -34,6 +34,8 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-core:5.1.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.1.10.RELEASE" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.yaml:snakeyaml:1.23" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:5.1.10.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.1.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-core:4.4.5" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.10" level="project" />
@@ -57,8 +59,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.9" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:servlet-api:3.0-alpha-1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-web:5.1.10.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.1.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.belerweb:pinyin4j:2.5.1" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:easyexcel:1.1.2-beta5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.17" level="project" />
@@ -69,11 +69,11 @@
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.virtuald:curvesapi:1.04" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib:3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.ow2.asm:asm:4.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-core:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-lang:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-hash:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.hzsparrow.framework.utils:hzsparrow-framework-utils-fastdfs:0.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.6" level="project" />
+    <orderEntry type="library" name="Maven: com.hzsparrow.framework.model:hzsparrow-framework-model:0.0.1-SNAPSHOT" level="project" />
   </component>
 </module>
