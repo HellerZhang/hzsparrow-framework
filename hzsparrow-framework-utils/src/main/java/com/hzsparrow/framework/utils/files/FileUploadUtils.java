@@ -23,7 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * 
  * @author Heller.Zhang
  * @since 2017年10月16日 下午7:35:32
  */
@@ -58,18 +57,18 @@ public class FileUploadUtils {
 
     /**
      * 初始化方法，设置允许上传的文件类型
-     * 
+     *
      * @author Heller.Zhang
      * @since 2017年10月6日 下午2:54:29
      */
     private void init() {
         // 初始化允许上传的文件扩展名
-        extMap.put("image", new String[] { ".gif", ".jpg", ".jpeg", ".png", ".bmp", ".jfif" });
-        extMap.put("flash", new String[] { ".swf", ".flv" });
-        extMap.put("media", new String[] { ".swf", ".flv", ".mp3", ".wav", ".wma", ".wmv", ".mid", ".avi", ".mpg",
-                ".asf", ".rm", ".rmvb" });
-        extMap.put("file", new String[] { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".htm", ".html", ".txt", ".zip",
-                ".rar", ".gz", ".bz2", ".sntd", ".snbd", ".pdf", ".jrxml", ".jasper" });
+        extMap.put("image", new String[]{".gif", ".jpg", ".jpeg", ".png", ".bmp", ".jfif"});
+        extMap.put("flash", new String[]{".swf", ".flv"});
+        extMap.put("media", new String[]{".swf", ".flv", ".mp3", ".wav", ".wma", ".wmv", ".mid", ".avi", ".mpg",
+                ".asf", ".rm", ".rmvb"});
+        extMap.put("file", new String[]{".doc", ".docx", ".xls", ".xlsx", ".ppt", ".htm", ".html", ".txt", ".zip",
+                ".rar", ".gz", ".bz2", ".7z", ".pdf", ".jrxml", ".jasper"});
 
     }
 
@@ -103,7 +102,7 @@ public class FileUploadUtils {
 
     /**
      * HTTP上传文件时，检测文件的合法性 合法返回文件扩展名（带点），不合法抛出异常
-     * 
+     *
      * @param file
      * @return String
      * @author Heller.Zhang
@@ -136,7 +135,11 @@ public class FileUploadUtils {
      */
     private void localUpload(InputStream in, String destFilePath) {
         File uploadFile;
-        uploadFile = new File(rootPath + File.separator + destFilePath);
+        if (destFilePath.trim().startsWith(secondPath)) {
+            uploadFile = new File(rootPath + File.separator + destFilePath);
+        } else {
+            uploadFile = new File(destFilePath);
+        }
         File uploadFolder = uploadFile.getParentFile();
         if (!uploadFolder.exists()) {
             uploadFolder.mkdirs();
@@ -156,6 +159,7 @@ public class FileUploadUtils {
             e.printStackTrace();
         }
     }
+
     /**
      * 本地上传（不指定目录）的接口，接收一个MultipartFile对象作为参数，用于开放给前端上传文件时调用
      *
@@ -250,7 +254,7 @@ public class FileUploadUtils {
 
     /**
      * 接收一个输入流，向FTP服务器的指定路径上传文件
-     * 
+     *
      * @param in
      * @param destFilePath
      * @author Heller.Zhang
@@ -262,7 +266,7 @@ public class FileUploadUtils {
 
     /**
      * 向FTP服务器上传文件（不指定路径）的接口，接收一个MultipartFile对象作为参数，用于开放给前端上传文件时调用
-     * 
+     *
      * @param file
      * @return ResultDTO<Object>
      * @author Heller.Zhang
@@ -274,7 +278,7 @@ public class FileUploadUtils {
 
     /**
      * 向FTP服务器上传文件（指定路径）的接口，接收一个MultipartFile对象作为参数，用于开放给前端上传文件时调用
-     * 
+     *
      * @param file
      * @param destFolder
      * @return FileInfoModel
@@ -309,7 +313,7 @@ public class FileUploadUtils {
 
     /**
      * 向FTP服务器上传文件（不指定路径）的接口，接收一个File对象作为参数，用于后端处理文件时使用
-     * 
+     *
      * @param file
      * @return ResultDTO<Object>
      * @author Heller.Zhang
@@ -321,7 +325,7 @@ public class FileUploadUtils {
 
     /**
      * 向FTP服务器上传文件（指定路径）的接口，接收一个File对象作为参数，用于后端处理文件时使用
-     * 
+     *
      * @param file
      * @param destFolder
      * @return FileInfoModel
@@ -361,8 +365,8 @@ public class FileUploadUtils {
      * @param fileName
      * @param fileExt
      * @return String
-     * @author Heller.Zhang
      * @throws Exception
+     * @author Heller.Zhang
      * @since 2017年10月6日 下午2:47:16
      */
     private String fastDFSUpload(byte[] source, String fileName, String fileExt) throws Exception {
@@ -379,7 +383,7 @@ public class FileUploadUtils {
 
     /**
      * 向FastDFS文件服务器上传文件的接口，接收一个MultipartFile对象作为参数，用于开放给前端上传文件时调用
-     * 
+     *
      * @param file
      * @return FileInfoModel
      * @author Heller.Zhang
@@ -407,7 +411,7 @@ public class FileUploadUtils {
 
     /**
      * 向FastDFS文件服务器上传文件的接口，接收一个File对象作为参数，用于后端处理文件时使用
-     * 
+     *
      * @param file
      * @return FileInfoModel
      * @author Heller.Zhang
@@ -435,9 +439,9 @@ public class FileUploadUtils {
 
     /**
      * 从本地服务器下载文件，接收一个HttpServletResponse对象，用于开放给前端下载功能使用
-     * 
+     *
      * @param resp
-     * @param  fileOldName
+     * @param fileOldName
      * @param filePath
      * @author Heller.Zhang
      * @since 2017年10月6日 下午3:11:45
@@ -446,7 +450,13 @@ public class FileUploadUtils {
         InputStream in = null;
         try {
             String fileExt = fileOldName.substring(fileOldName.indexOf('.'), fileOldName.length());
-            in = new FileInputStream(rootPath + File.separator + filePath);
+
+            if (filePath.trim().startsWith(secondPath)) {
+                in = new FileInputStream(rootPath + File.separator + filePath);
+            } else {
+                in = new FileInputStream(filePath);
+            }
+
             resp.setContentType("UTF-8");
             setRespContentType(resp, fileExt);
 
@@ -474,10 +484,10 @@ public class FileUploadUtils {
 
     /**
      * 下载本地指定文件
-     * 
-     * @param resp 响应对象
+     *
+     * @param resp        响应对象
      * @param fileOldName 文件名
-     * @param file 文件对象
+     * @param file        文件对象
      * @author Heller.Zhang
      * @since 2019年7月31日 上午11:12:56
      */
@@ -516,9 +526,9 @@ public class FileUploadUtils {
     /**
      * 从FTP服务器下载文件，接收一个HttpServletResponse对象，用于开放给前端下载功能使用
      *
-     * @param resp 响应对象
+     * @param resp        响应对象
      * @param fileOldName 文件旧名
-     * @param filePath 文件存储地址
+     * @param filePath    文件存储地址
      * @author Heller.Zhang
      * @since 2017年10月6日 下午3:39:39
      */
@@ -618,7 +628,7 @@ public class FileUploadUtils {
             resp.setHeader("Connection", "close");
             out = resp.getOutputStream();
             out.write(res.getBody());
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw new RuntimeException("下载文件失败！", e);
         }
@@ -639,7 +649,7 @@ public class FileUploadUtils {
             ResponseEntity<byte[]> res = FileManager.download(filePath, destFileName);
             FileUtils.writeByteArrayToFile(FileUtils.getFile(destPath), res.getBody());
             return destPath;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw new RuntimeException("下载文件失败！", e);
         }
@@ -647,7 +657,7 @@ public class FileUploadUtils {
 
     /**
      * 按日期在upload文件夹下生成上传文件的文件夹，并返回路径
-     * 
+     *
      * @return String
      * @author Heller.Zhang
      * @since 2017年10月6日 上午11:24:02
@@ -664,7 +674,7 @@ public class FileUploadUtils {
 
     /**
      * 生成随机文件名
-     * 
+     *
      * @return String
      * @author Heller.Zhang
      * @since 2017年10月6日 上午11:27:30
@@ -676,7 +686,7 @@ public class FileUploadUtils {
 
     /**
      * 生成上传文件路径
-     * 
+     *
      * @param fileExt
      * @return String
      * @author Heller.Zhang
@@ -695,7 +705,7 @@ public class FileUploadUtils {
 
     /**
      * 接收一个MultipartFile对象作为参数，用于开放给前端上传文件时调用
-     * 
+     *
      * @param file
      * @return UcUploadifyUploadDTO
      * @author Heller.Zhang
@@ -713,7 +723,7 @@ public class FileUploadUtils {
 
     /**
      * 接收一个MultipartFile对象作为参数，用于开放给前端上传文件时调用
-     * 
+     *
      * @param file
      * @return UcUploadifyUploadDTO
      * @author Heller.Zhang
@@ -731,7 +741,7 @@ public class FileUploadUtils {
 
     /**
      * 服务器端上传（不指定目录）的接口，接收一个File对象作为参数，用于后端处理文件时使用
-     * 
+     *
      * @param file
      * @return UcUploadifyUploadDTO
      * @author Heller.Zhang
@@ -749,7 +759,7 @@ public class FileUploadUtils {
 
     /**
      * 服务器端上传（指定目录）的接口，接收一个File对象作为参数，用于后端处理文件时使用
-     * 
+     *
      * @param file
      * @param destFolder
      * @return UcUploadifyUploadDTO
@@ -768,7 +778,7 @@ public class FileUploadUtils {
 
     /**
      * 下载文件，接收一个HttpServletResponse对象，用于开放给前端下载功能使用
-     * 
+     *
      * @param resp
      * @param fileOldName
      * @param filePath
@@ -787,7 +797,7 @@ public class FileUploadUtils {
 
     /**
      * 下载文件，并返回下载完成后的文件路径，用于后端的文件处理
-     * 
+     *
      * @param destFileName
      * @param destFolder
      * @param filePath
