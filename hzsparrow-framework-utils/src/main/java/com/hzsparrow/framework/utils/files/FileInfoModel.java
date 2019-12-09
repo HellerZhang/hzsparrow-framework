@@ -4,6 +4,8 @@
  */
 package com.hzsparrow.framework.utils.files;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +18,7 @@ import java.util.Date;
 public class FileInfoModel implements Serializable {
  
     private static final long serialVersionUID = 6546488151099007359L;
+
 
     /**
      * 旧名字
@@ -43,6 +46,7 @@ public class FileInfoModel implements Serializable {
      *
      * @mbg.generated 2017-10-06 08:32:35
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date uploadTime;
 
     /**

@@ -122,7 +122,7 @@ public class FileUploadUtils {
             }
         }
         if (!isAllowedFileType) {
-            throw new RuntimeException("上传文件扩展名" + fileExt + "是不允许的扩展名。");
+            throw new RuntimeException(fileExt + "是禁止上传的格式。");
         }
         return fileExt;
     }
@@ -172,6 +172,10 @@ public class FileUploadUtils {
         return localUpload(file, null);
     }
 
+    public List<FileInfoModel> localUpload(MultipartFile[] files) {
+        return localUpload(files, null);
+    }
+
     /**
      * 本地上传（指定目录）的接口，接收一个MultipartFile对象作为参数，用于开放给前端上传文件时调用
      *
@@ -204,6 +208,39 @@ public class FileUploadUtils {
         uploadDTO.setNewName(fileName);
         uploadDTO.setUploadTime(new Date());
         return uploadDTO;
+    }
+
+    public List<FileInfoModel> localUpload(MultipartFile[] files, String destFolder) {
+        for (MultipartFile file : files) {
+            checkFileLegality(file);
+        }
+        List<FileInfoModel> list = new ArrayList<>();
+        for (MultipartFile file : files) {
+            String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."),
+                    file.getOriginalFilename().length());
+            FileInfoModel uploadDTO = new FileInfoModel();
+            String fileName = createRandomFileName() + fileExt;
+            String destFile;
+            if (StringUtils.isBlank(destFolder)) {
+                destFile = createUploadFolderPath() + File.separator + fileName;
+            } else {
+                destFile = destFolder + File.separator + fileName;
+            }
+            try {
+                InputStream in = file.getInputStream();
+                localUpload(in, destFile);
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+                throw new RuntimeException("上传文件失败！", e);
+            }
+            uploadDTO.setByteSize(file.getSize());
+            uploadDTO.setPath(destFile);
+            uploadDTO.setOldName(file.getOriginalFilename());
+            uploadDTO.setNewName(fileName);
+            uploadDTO.setUploadTime(new Date());
+            list.add(uploadDTO);
+        }
+        return list;
     }
 
     /**
@@ -276,6 +313,10 @@ public class FileUploadUtils {
         return remoteUploadFtp(file, null);
     }
 
+    private List<FileInfoModel> remoteUploadFtp(MultipartFile[] files) {
+        return remoteUploadFtp(files, null);
+    }
+
     /**
      * 向FTP服务器上传文件（指定路径）的接口，接收一个MultipartFile对象作为参数，用于开放给前端上传文件时调用
      *
@@ -309,6 +350,40 @@ public class FileUploadUtils {
             logger.error(e.getMessage(), e);
             throw new RuntimeException("上传文件失败！", e);
         }
+    }
+
+    private List<FileInfoModel> remoteUploadFtp(MultipartFile[] files, String destFolder) {
+        for (MultipartFile file : files) {
+            String fileExt = checkFileLegality(file);
+        }
+        List<FileInfoModel> list = new ArrayList<>();
+        for (MultipartFile file : files) {
+            String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."),
+                    file.getOriginalFilename().length());
+            FileInfoModel uploadDTO = new FileInfoModel();
+            String fileName = createRandomFileName() + fileExt;
+            String destFile;
+            if (StringUtils.isBlank(destFolder)) {
+                destFile = createUploadFolderPath() + FTPUtil.strSeparator + fileName;
+            } else {
+                destFile = destFolder + FTPUtil.strSeparator + fileName;
+            }
+            try {
+                InputStream in = file.getInputStream();
+                String ftpPath = FTPUtil.strSeparator + destFile.replace(File.separatorChar, '/');
+                ftpUpload(in, ftpPath);
+                uploadDTO.setByteSize(file.getSize());
+                uploadDTO.setPath(ftpPath);
+                uploadDTO.setOldName(file.getOriginalFilename());
+                uploadDTO.setNewName(fileName);
+                uploadDTO.setUploadTime(new Date());
+                list.add(uploadDTO);
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+                throw new RuntimeException("上传文件失败！", e);
+            }
+        }
+        return list;
     }
 
     /**
@@ -407,6 +482,34 @@ public class FileUploadUtils {
             logger.error(e.getMessage(), e);
             throw new RuntimeException("上传文件失败！", e);
         }
+    }
+
+    private List<FileInfoModel> remoteUploadFastDfs(MultipartFile[] files) throws Exception {
+        for (MultipartFile file : files) {
+            String fileExt = checkFileLegality(file);
+        }
+        List<FileInfoModel> list = new ArrayList<>();
+        for (MultipartFile file : files) {
+            String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."),
+                    file.getOriginalFilename().length());
+            FileInfoModel uploadDTO = new FileInfoModel();
+            String fileName = createRandomFileName();
+            try {
+                byte[] sources = file.getBytes();
+
+                String filePath = fastDFSUpload(sources, fileName, fileExt);
+                uploadDTO.setByteSize(file.getSize());
+                uploadDTO.setPath(filePath);
+                uploadDTO.setOldName(file.getOriginalFilename());
+                uploadDTO.setNewName(fileName + fileExt);
+                uploadDTO.setUploadTime(new Date());
+                list.add(uploadDTO);
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+                throw new RuntimeException("上传文件失败！", e);
+            }
+        }
+        return list;
     }
 
     /**
@@ -718,6 +821,16 @@ public class FileUploadUtils {
             return remoteUploadFastDfs(file);
         } else {
             return localUpload(file);
+        }
+    }
+
+    public List<FileInfoModel> upload(MultipartFile[] files) throws Exception {
+        if (fileServerType == 2) {
+            return remoteUploadFtp(files);
+        } else if (fileServerType == 3) {
+            return remoteUploadFastDfs(files);
+        } else {
+            return localUpload(files);
         }
     }
 
