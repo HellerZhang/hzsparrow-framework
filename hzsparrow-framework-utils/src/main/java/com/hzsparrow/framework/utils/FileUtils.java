@@ -10,7 +10,7 @@ import java.io.*;
 
 /**
  * 移动、复制文件
- * 
+ *
  * @author Heller.Zhang
  * @since 2019年5月7日 上午9:03:22
  */
@@ -21,7 +21,7 @@ public class FileUtils {
 
     /**
      * 移动文件到指定路径
-     * 
+     *
      * @param srcFile
      * @param destPath
      * @return
@@ -36,7 +36,7 @@ public class FileUtils {
 
     /**
      * 移动文件到指定路径
-     * 
+     *
      * @param srcFile
      * @param destPath
      * @return
@@ -52,7 +52,7 @@ public class FileUtils {
 
     /**
      * 复制文件到指定路径
-     * 
+     *
      * @param oldPath
      * @param newPath
      * @throws IOException
@@ -66,7 +66,7 @@ public class FileUtils {
 
     /**
      * 复制文件到指定路径
-     * 
+     *
      * @param oldfile
      * @param newPath
      * @author Heller.Zhang
@@ -88,12 +88,13 @@ public class FileUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("复制文件失败！", e);
         }
     }
 
     /**
      * 删除空目录
-     * 
+     *
      * @param dir
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:05:05
@@ -109,7 +110,7 @@ public class FileUtils {
 
     /**
      * 删除指定目录及其下的子目录和文件
-     * 
+     *
      * @param dirPath
      * @return
      * @author Heller.Zhang
@@ -121,7 +122,7 @@ public class FileUtils {
 
     /**
      * 递归删除目录下的所有文件及子目录下所有文件
-     * 
+     *
      * @param dir
      * @return
      * @author Heller.Zhang
@@ -144,7 +145,7 @@ public class FileUtils {
 
     /**
      * 获取文件内容的字节数组
-     * 
+     *
      * @param filePath
      * @return
      * @throws IOException
@@ -167,7 +168,7 @@ public class FileUtils {
 
     /**
      * 读取文件的字节数组
-     * 
+     *
      * @param file
      * @return
      * @throws IOException
@@ -205,7 +206,7 @@ public class FileUtils {
 
     /**
      * 将byte数组写入文件
-     * 
+     *
      * @param path
      * @param content
      * @throws IOException
@@ -226,7 +227,7 @@ public class FileUtils {
 
     /**
      * 获取源文件的绝对地址
-     * 
+     *
      * @param relativePath 源文件相对地址
      * @return
      * @throws IOException
@@ -239,7 +240,7 @@ public class FileUtils {
 
     /**
      * 获取classpath下的源文件
-     * 
+     *
      * @param relativePath 源文件相对地址
      * @return
      * @throws IOException
@@ -253,7 +254,7 @@ public class FileUtils {
 
     /**
      * 合并可排序的文件，文件名应以 【序号-名称】 格式命名
-     * 
+     *
      * @param rootPath
      * @param outputPath
      * @return
@@ -280,7 +281,7 @@ public class FileUtils {
 
     /**
      * 合并指定目录下的文件
-     * 
+     *
      * @param rootPath
      * @param outputPath
      * @return
@@ -294,7 +295,7 @@ public class FileUtils {
 
     /**
      * 合并指定文件
-     * 
+     *
      * @param filePath
      * @param outputPath
      * @return

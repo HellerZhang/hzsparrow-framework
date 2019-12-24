@@ -17,15 +17,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * @author Heller.Zhang
+ * @Deprecated This utils is Deprecated.Please use HzSparrowFileUploadUtils.
  * @since 2017年10月16日 下午7:35:32
  */
+@Deprecated
 public class FileUploadUtils {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -46,7 +50,7 @@ public class FileUploadUtils {
 
     private Integer fileServerType = 1;
 
-    private Long maxFileSize = 1000000000L;
+    private Long maxFileSize = 1073741824L;
 
     /**
      * Consturctor
@@ -549,11 +553,10 @@ public class FileUploadUtils {
      * @author Heller.Zhang
      * @since 2017年10月6日 下午3:11:45
      */
-    public void localDownload(HttpServletResponse resp, String fileOldName, String filePath) {
+    public void localDownload(HttpServletRequest request, HttpServletResponse resp, String fileOldName, String filePath) {
         InputStream in = null;
         try {
-            String fileExt = fileOldName.substring(fileOldName.indexOf('.'), fileOldName.length());
-
+            String fileExt = fileOldName.substring(fileOldName.indexOf('.'));
             if (filePath.trim().startsWith(secondPath)) {
                 in = new FileInputStream(rootPath + File.separator + filePath);
             } else {
@@ -563,7 +566,7 @@ public class FileUploadUtils {
             resp.setContentType("UTF-8");
             setRespContentType(resp, fileExt);
 
-            resp.setHeader("Content-Disposition", "attachment;filename=\"".concat(new String(fileOldName.replaceAll(" ", "").concat("\"").getBytes("UTF-8"), "ISO8859-1")));
+            resp.setHeader("Content-Disposition", "attachment;filename=\"".concat(getDownloadFileName(request, fileOldName)));
             resp.setHeader("Connection", "close");
             int len = 0;
             byte[] buffer = new byte[1024 * 1024];
@@ -594,7 +597,7 @@ public class FileUploadUtils {
      * @author Heller.Zhang
      * @since 2019年7月31日 上午11:12:56
      */
-    public void localDownload(HttpServletResponse resp, String fileOldName, File file) {
+    public void localDownload(HttpServletRequest request, HttpServletResponse resp, String fileOldName, File file) {
         InputStream in = null;
 
         try {
@@ -604,7 +607,7 @@ public class FileUploadUtils {
             setRespContentType(resp, fileExt);
 
             resp.setHeader("Content-Disposition", "attachment;filename="
-                    .concat(new String(fileOldName.replaceAll(" ", "").getBytes("UTF-8"), "ISO8859-1")));
+                    .concat(getDownloadFileName(request, fileOldName)));
             resp.setHeader("Connection", "close");
             int len = 0;
             byte[] buffer = new byte[1024 * 1024];
@@ -635,7 +638,7 @@ public class FileUploadUtils {
      * @author Heller.Zhang
      * @since 2017年10月6日 下午3:39:39
      */
-    private void ftpDownload(HttpServletResponse resp, String fileOldName, String filePath) {
+    private void ftpDownload(HttpServletRequest request, HttpServletResponse resp, String fileOldName, String filePath) {
         InputStream in = null;
         try {
             String fileExt = fileOldName.substring(fileOldName.lastIndexOf('.'));
@@ -649,7 +652,7 @@ public class FileUploadUtils {
             setRespContentType(resp, fileExt);
 
             resp.setHeader("Content-Disposition", "attachment;filename="
-                    .concat(new String(fileOldName.replaceAll(" ", "").getBytes("UTF-8"), "ISO8859-1")));
+                    .concat(getDownloadFileName(request, fileOldName)));
             resp.setHeader("Connection", "close");
             int len = 0;
             byte[] buffer = new byte[1024 * 1024];
@@ -717,7 +720,7 @@ public class FileUploadUtils {
      * @author Heller.Zhang
      * @since 2017年10月6日 下午3:42:26
      */
-    private void fastDFSDownload(HttpServletResponse resp, String fileOldName, String filePath) {
+    private void fastDFSDownload(HttpServletRequest request, HttpServletResponse resp, String fileOldName, String filePath) {
         OutputStream out = null;
         try {
             String fileExt = fileOldName.substring(fileOldName.indexOf('.'), fileOldName.length());
@@ -727,7 +730,7 @@ public class FileUploadUtils {
             setRespContentType(resp, fileExt);
 
             resp.setHeader("Content-Disposition", "attachment;filename="
-                    .concat(new String(fileOldName.replaceAll(" ", "").getBytes("UTF-8"), "ISO8859-1")));
+                    .concat(getDownloadFileName(request, fileOldName)));
             resp.setHeader("Connection", "close");
             out = resp.getOutputStream();
             out.write(res.getBody());
@@ -768,7 +771,7 @@ public class FileUploadUtils {
     public String createUploadFolderPath() {
         String date = dateFormat.format(new Date());
         String folder = secondPath + File.separator + date;
-        File f1 = new File(folder + File.separator + date);
+        File f1 = new File(rootPath + File.separator + folder + File.separator + date);
         if (!f1.exists()) {
             f1.mkdirs();
         }
@@ -900,11 +903,21 @@ public class FileUploadUtils {
      */
     public void download(HttpServletResponse resp, String fileOldName, String filePath) {
         if (fileServerType == 2) {
-            ftpDownload(resp, fileOldName, filePath);
+            ftpDownload(null, resp, fileOldName, filePath);
         } else if (fileServerType == 3) {
-            fastDFSDownload(resp, fileOldName, filePath);
+            fastDFSDownload(null, resp, fileOldName, filePath);
         } else {
-            localDownload(resp, fileOldName, filePath);
+            localDownload(null, resp, fileOldName, filePath);
+        }
+    }
+
+    public void download(HttpServletRequest request, HttpServletResponse resp, String fileOldName, String filePath) {
+        if (fileServerType == 2) {
+            ftpDownload(request, resp, fileOldName, filePath);
+        } else if (fileServerType == 3) {
+            fastDFSDownload(request, resp, fileOldName, filePath);
+        } else {
+            localDownload(request, resp, fileOldName, filePath);
         }
     }
 
@@ -976,6 +989,27 @@ public class FileUploadUtils {
                 resp.setContentType("text/plain");
                 break;
         }
+    }
+
+    private String getDownloadFileName(HttpServletRequest request, String fileName) {
+        String result;
+        boolean isIe11 = false;
+        boolean isIe = false;
+        if (request != null) {
+            String userAgent = request.getHeader("User-Agent");
+            isIe11 = userAgent.indexOf("like Gecko") > 0;
+            isIe = userAgent.indexOf("MSIE") > 0;
+        }
+        try {
+            if (isIe || isIe11) {
+                result = URLEncoder.encode(fileName, "UTF-8");
+            } else {
+                result = new String(fileName.replaceAll(" ", "").getBytes("UTF-8"), "ISO8859-1");
+            }
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("文件名错误！");
+        }
+        return result;
     }
 
     public WriteFTPFile getFtpWriter() {
