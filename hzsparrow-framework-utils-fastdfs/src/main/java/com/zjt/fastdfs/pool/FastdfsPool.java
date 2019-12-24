@@ -11,6 +11,7 @@ import org.csource.fastdfs.ProtoCommon;
 import org.csource.fastdfs.StorageServer;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
+import org.springframework.util.ResourceUtils;
 
 public class FastdfsPool extends Pool {
 
@@ -27,8 +28,11 @@ public class FastdfsPool extends Pool {
     private static class FastdfsClientFactory extends BasePoolableObjectFactory {
 
         public Object makeObject() throws Exception {
-            String classPath = new File(super.getClass().getResource("/").getFile()).getCanonicalPath();
-            String configFilePath = classPath + File.separator + "fdfs_client.conf";
+            File configFile = new File(ResourceUtils.getFile("file:fastdfs_client.conf").getPath());
+            if (!configFile.exists()) {
+                configFile = new File(ResourceUtils.getFile("classpath:fastdfs_client.conf").getPath());
+            }
+            String configFilePath = configFile.getAbsolutePath();
             ClientGlobal.init(configFilePath);
             TrackerClient tracker = new TrackerClient();
             TrackerServer trackerServer = tracker.getConnection();
