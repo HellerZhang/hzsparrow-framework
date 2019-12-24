@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.hzsparrow.framework.utils.autoconfigure.HzSparrowFrameworkUtilsConfiguration
+com.hzsparrow.framework.utils.autoconfigure.HzSparrowFrameworkUtilsConfiguration,\
+com.hzsparrow.framework.utils.autoconfigure.HzSparrowFileUploadConfiguration
