@@ -1,6 +1,8 @@
 package com.hzsparrow.boot.base.mapper;
 
 import com.hzsparrow.boot.base.entity.HzsFile;
+import com.hzsparrow.framework.model.result.ResultDTO;
+
 import java.util.List;
 
 public interface HzsFileMapper {
@@ -43,4 +45,8 @@ public interface HzsFileMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(HzsFile record);
+
+    int removeByRelationId(String relationId);
+
+    List<HzsFile> findByRelationId(String relationId);
 }

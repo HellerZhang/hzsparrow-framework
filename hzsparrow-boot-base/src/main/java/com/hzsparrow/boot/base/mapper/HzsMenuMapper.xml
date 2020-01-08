@@ -66,5 +66,6 @@
     -->
     select hsm_id, hsm_name, parent_id, url, hsm_type, `state`, icon, sort_num
     from hzs_menu
+    order by sort_num
   </select>
 </mapper>

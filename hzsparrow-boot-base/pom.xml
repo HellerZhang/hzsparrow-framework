@@ -21,12 +21,33 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version> 1.2.12</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis-spring-boot-starter</artifactId>
+                    <groupId>org.mybatis.spring.boot</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -53,6 +74,16 @@
             <groupId>com.hzsparrow.framework</groupId>
             <artifactId>hzsparrow-framework-spring-boot-starter</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-beanutils</artifactId>
+                    <groupId>commons-beanutils</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,6 +92,27 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.baidu.ueditor</groupId>
+            <artifactId>baidu-ueditor</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baidu.ueditor</groupId>
+            <artifactId>baidu-editor-json</artifactId>
+            <version>1.1.2</version>
         </dependency>
     </dependencies>
 
