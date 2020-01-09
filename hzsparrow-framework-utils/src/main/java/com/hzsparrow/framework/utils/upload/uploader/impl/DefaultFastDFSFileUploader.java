@@ -105,7 +105,7 @@ public class DefaultFastDFSFileUploader implements FileUploader {
 
     private FileInfoModel uploadOnece(MultipartFile file, String destFolder) {
         FileInfoModel uploadDTO = new FileInfoModel();
-        String fileExt = file.getName().substring(file.getName().indexOf('.'));
+        String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().indexOf('.'));
         String fileName = randomFileNameCreator.creatRandomFileName() + fileExt;
         String destFile;
         if (StringUtils.isBlank(destFolder)) {
