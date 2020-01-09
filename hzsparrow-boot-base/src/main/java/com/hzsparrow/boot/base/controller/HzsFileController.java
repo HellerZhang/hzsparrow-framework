@@ -10,7 +10,9 @@ import com.hzsparrow.framework.model.result.ResultDTO;
 import com.hzsparrow.framework.utils.files.FileInfoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,12 +31,24 @@ public class HzsFileController extends BaseController {
      *
      * @param relationId
      * @param request
-     * @param user
      * @return
      */
     @RequestMapping("/saveAll")
-    public ResultDTO<Map<String, HzsFile>> save(String relationId, HttpServletRequest request, LoginVO user) {
-        return hzsFileService.save(relationId, request, user);
+    public ResultDTO<Map<String, HzsFile>> save(String relationId, String relationFlag, HttpServletRequest request) {
+        return hzsFileService.save(relationId, relationFlag, request, getSessionUser());
+    }
+
+    /**
+     * 上传单个文件，并保存文件信息
+     *
+     * @param relationId
+     * @param relationFlag
+     * @param file
+     * @return
+     */
+    @RequestMapping("/save")
+    public ResultDTO<HzsFile> save(String relationId, String relationFlag, @RequestParam("uploadFile") MultipartFile file) {
+        return hzsFileService.save(relationId, relationFlag, file, getSessionUser());
     }
 
     /**

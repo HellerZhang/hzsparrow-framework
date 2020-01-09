@@ -2,6 +2,7 @@ package com.hzsparrow.boot.base.controller;
 
 import com.hzsparrow.boot.base.component.BaseController;
 import com.hzsparrow.boot.base.contant.LoginUserEnum;
+import com.hzsparrow.boot.base.service.LoginService;
 import com.hzsparrow.boot.base.vo.LoginVO;
 import com.hzsparrow.framework.model.result.ResultDTO;
 import com.hzsparrow.framework.utils.VerifyCodeImgUtils;

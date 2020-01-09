@@ -2,6 +2,7 @@ package com.hzsparrow.boot.base.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.hzsparrow.boot.base.contant.FileSaveAddrEnum;
 import com.hzsparrow.boot.base.entity.HzsFile;
 import com.hzsparrow.boot.base.mapper.HzsFileMapper;
 import com.hzsparrow.boot.base.vo.LoginVO;
@@ -11,7 +12,9 @@ import com.hzsparrow.framework.model.result.ResultDTO;
 import com.hzsparrow.framework.utils.files.FileInfoModel;
 import com.hzsparrow.framework.utils.upload.HzSparrowFileUploadUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,16 +34,20 @@ public class HzsFileService {
     @Autowired
     private HzSparrowFileUploadUtils hzSparrowFileUploadUtils;
 
+    @Value("${hzsparrow.fileupload.serverType}")
+    private String fileServerType;
+
     /**
      * 新增
      *
      * @param relationId
+     * @param relationFlag
      * @param request
      * @param user
      * @return data为文件信息集合
      */
     @Transactional
-    public ResultDTO<Map<String, HzsFile>> save(String relationId, HttpServletRequest request, LoginVO user) {
+    public ResultDTO<Map<String, HzsFile>> save(String relationId, String relationFlag, HttpServletRequest request, LoginVO user) {
         MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = req.getFileMap();
         Map<String, HzsFile> map = new HashMap<>();
@@ -49,7 +56,7 @@ public class HzsFileService {
             if (file == null) {
                 continue;
             }
-            ResultDTO<HzsFile> resultDTO = save(relationId, file, user);
+            ResultDTO<HzsFile> resultDTO = save(relationId, relationFlag, file, user);
             if (resultDTO.isSuccess()) {
                 map.put(name, resultDTO.getData());
             }
@@ -61,33 +68,36 @@ public class HzsFileService {
      * 新增
      *
      * @param relationId
+     * @param relationFlag
      * @param file
      * @param user
      * @return data为文件信息
      */
     @Transactional
-    public ResultDTO<HzsFile> save(String relationId, MultipartFile file, LoginVO user) {
+    public ResultDTO<HzsFile> save(String relationId, String relationFlag, MultipartFile file, LoginVO user) {
         FileInfoModel fileInfoModel = null;
         try {
             fileInfoModel = hzSparrowFileUploadUtils.upload(file);
         } catch (Exception e) {
-            return ResultDTO.getDataFaild(500, "文件上传失败!", null);
+            throw new RuntimeException("文件上传失败!", e);
         }
-        return save(relationId, fileInfoModel, user);
+        return save(relationId, relationFlag, fileInfoModel, user);
     }
 
     /**
      * 新增
      *
      * @param relationId
+     * @param relationFlag
      * @param fileInfoModel
      * @param user
      * @return data为文件信息
      */
     @Transactional
-    public ResultDTO<HzsFile> save(String relationId, FileInfoModel fileInfoModel, LoginVO user) {
+    public ResultDTO<HzsFile> save(String relationId, String relationFlag, FileInfoModel fileInfoModel, LoginVO user) {
         HzsFile entity = new HzsFile();
         entity.setFileRegId(relationId);
+        entity.setFileRefFlag(relationFlag);
         entity.setUploadId(user.getUserId());
         entity.setUploadName(user.getUserName());
         return save(entity, fileInfoModel);
@@ -127,6 +137,7 @@ public class HzsFileService {
             ResultDTO.getOptionFaild(400, "关联ID不可为空！");
         }
         entity.setHsfId(UUID.randomUUID().toString());
+        entity.setFileSaveAddr(FileSaveAddrEnum.valueOfByFlag(fileServerType));
         hzsFileMapper.insert(entity);
         return ResultDTO.getDataSuccess(entity);
     }
@@ -154,6 +165,20 @@ public class HzsFileService {
     @Transactional
     public ResultDTO<Object> removeByRelationId(String relationId) {
         hzsFileMapper.removeByRelationId(relationId);
+        return ResultDTO.getOptionSuccess();
+    }
+
+    /**
+     * 更新文件关联信息
+     *
+     * @param fileRegId
+     * @param fileRefFlag
+     * @param hsfId
+     * @return
+     */
+    @Transactional
+    public ResultDTO<Object> updateRelation(String fileRegId, String fileRefFlag, String hsfId) {
+        hzsFileMapper.updateRelation(fileRegId, fileRefFlag, hsfId);
         return ResultDTO.getOptionSuccess();
     }
 

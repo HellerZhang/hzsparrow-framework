@@ -2,6 +2,7 @@ package com.hzsparrow.boot.base.mapper;
 
 import com.hzsparrow.boot.base.entity.HzsFile;
 import com.hzsparrow.framework.model.result.ResultDTO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -49,4 +50,6 @@ public interface HzsFileMapper {
     int removeByRelationId(String relationId);
 
     List<HzsFile> findByRelationId(String relationId);
+
+    int updateRelation(@Param("fileRegId") String fileRegId, @Param("fileRefFlag") String fileRefFlag, @Param("hsfId") String hsfId);
 }

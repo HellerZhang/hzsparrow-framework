@@ -41,7 +41,7 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version> 1.2.12</version>
+            <version>1.2.12</version>
             <exclusions>
                 <exclusion>
                     <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -76,12 +76,8 @@
             <version>0.0.1-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>commons-beanutils</artifactId>
-                    <groupId>commons-beanutils</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>commons-io</artifactId>
-                    <groupId>commons-io</groupId>
+                    <artifactId>fastdfs-client</artifactId>
+                    <groupId>com.github.tobato</groupId>
                 </exclusion>
             </exclusions>
         </dependency>

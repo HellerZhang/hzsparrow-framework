@@ -1,21 +1,16 @@
-package com.hzsparrow.boot.base.controller;
+package com.hzsparrow.boot.base.service;
 
 import com.hzsparrow.boot.base.contant.LoginUserEnum;
-import com.hzsparrow.boot.base.contant.RoleTypeEnum;
 import com.hzsparrow.boot.base.entity.HzsRole;
 import com.hzsparrow.boot.base.entity.HzsUser;
-import com.hzsparrow.boot.base.service.HzsRoleService;
-import com.hzsparrow.boot.base.service.HzsUserService;
 import com.hzsparrow.boot.base.vo.LoginVO;
 import com.hzsparrow.framework.model.result.ResultDTO;
-import com.hzsparrow.framework.utils.IpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 @Service
 public class LoginService {

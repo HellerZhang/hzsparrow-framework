@@ -17,12 +17,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class HzsUserService {
 
     @Autowired
     private HzsUserMapper hzsUserMapper;
+
+    @Autowired
+    private HzsFileService hzsFileService;
 
     /**
      * 新增
@@ -33,6 +37,7 @@ public class HzsUserService {
      */
     @Transactional
     public ResultDTO<Object> save(HzsUser entity, LoginVO user) {
+        entity.setHsuId(UUID.randomUUID().toString());
         entity.setHsuPassword(getEntryPassword(entity.getHsuAccount(), entity.getHsuPassword()));
         entity.setDeleteFlag(DeleteFlagEnum.NORMAL.getValue());
         entity.setCrtId(user.getUserId());
@@ -42,6 +47,9 @@ public class HzsUserService {
         entity.setMdfName(user.getUserName());
         entity.setMdfTime(new Date());
         hzsUserMapper.insert(entity);
+        if (StringUtils.isNotBlank(entity.getImgId())) {
+            hzsFileService.updateRelation(entity.getHsuId(), "hzs_user", entity.getImgId());
+        }
         return ResultDTO.getOptionSuccess();
     }
 
@@ -63,6 +71,9 @@ public class HzsUserService {
         entity.setMdfId(user.getUserId());
         entity.setMdfName(user.getUserName());
         entity.setMdfTime(new Date());
+        if (!StringUtils.equals(entity.getImgId(), oldEntity.getImgId())) {
+            hzsFileService.updateRelation(entity.getHsuId(), "hzs_user", entity.getImgId());
+        }
         hzsUserMapper.updateByPrimaryKey(entity);
         return ResultDTO.getOptionSuccess();
     }
@@ -77,6 +88,7 @@ public class HzsUserService {
     public ResultDTO<Object> remove(String[] hsuId) {
         for (String id : hsuId) {
             hzsUserMapper.remove(DeleteFlagEnum.DESTROY.getValue(), id);
+            hzsFileService.removeByRelationId(id);
         }
         return ResultDTO.getOptionSuccess();
     }
@@ -84,7 +96,7 @@ public class HzsUserService {
     /**
      * 修改密码
      *
-     * @param hsuId        用户id
+     * @param hsuId       用户id
      * @param oldPassword 旧密码
      * @param newPassword 新密码
      */
