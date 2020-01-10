@@ -42,7 +42,6 @@
         -->
         update hzs_sys_config
         set hssc_name = #{hsscName,jdbcType=VARCHAR},
-        hssc_flag = #{hsscFlag,jdbcType=VARCHAR},
         hssc_value = #{hsscValue,jdbcType=VARCHAR},
         hssc_type = #{hsscType,jdbcType=INTEGER},
         hssc_refer_value = #{hsscReferValue,jdbcType=VARCHAR},

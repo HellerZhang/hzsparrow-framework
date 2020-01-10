@@ -26,7 +26,7 @@
     <result column="sort_num" jdbcType="INTEGER" property="sortNum" />
   </resultMap>
 
-  <resultMap id="MenuAsAssignResultMap" type="com.hzsparrow.boot.base.entity.HzsMenuAsAssign">
+  <resultMap id="MenuAsAssignResultMap" type="com.hzsparrow.boot.base.entity.HzsMenuAsAssign" extends="MenuResultMap">
     <result column="isAssigned" jdbcType="INTEGER" property="isAssigned" />
   </resultMap>
 
@@ -116,8 +116,7 @@
     select a.hsm_id, a.hsm_name, a.parent_id, a.url, a.hsm_type, a.`state`, a.icon, a.sort_num,
     case when b.hsrm_id is null then 0 else 1 end as isAssigned
     from hzs_menu a
-    left join hzs_role_menu b on a.hsm_id = b.hsm_id
-    where b.hsr_id = #{roleId, jdbcType=VARCHAR}
+    left join hzs_role_menu b on a.hsm_id = b.hsm_id and b.hsr_id = #{roleId, jdbcType=VARCHAR}
     order by a.sort_num
   </select>
 </mapper>

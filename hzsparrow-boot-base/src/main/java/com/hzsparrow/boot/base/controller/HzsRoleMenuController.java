@@ -7,15 +7,15 @@ import com.hzsparrow.boot.base.service.HzsRoleMenuService;
 import com.hzsparrow.framework.model.result.ResultDTO;
 import com.hzsparrow.framework.utils.tree.DefaultTree;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 /**
  * 角色菜单模块
  */
-@Controller
+@RestController
 @RequestMapping("/hzs/rolemenu")
 public class HzsRoleMenuController extends BaseController {
 
