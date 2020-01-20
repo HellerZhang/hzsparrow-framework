@@ -246,7 +246,7 @@ h1 {
 }
 
 h1 span {
-    color:#f13f57;
+    color:#f17323;
 }
 
 /*-- //title --*/
@@ -289,7 +289,7 @@ p.legend i{
 .input span {
     position: absolute;
     display: block;
-    color: #f13f57;
+    color: #f17323;
     left: 10px;
     top: 12px;
     font-size: 18px;
@@ -310,8 +310,8 @@ p.legend i{
 }
 
 .input input:focus {
-    padding: 13px 5px 13px 40px;
-    border-color:#f13f57;
+    padding: 13px 5px 13px 18px;
+    border-color:#f17323;
 }
 
 .submit {
@@ -322,7 +322,7 @@ p.legend i{
     background: rgba(12, 10, 10, 0.2);
     border-radius: 100%;
     border: none;
-    color: #f13f57;
+    color: #f16900;
     font-size: 24px;
     cursor: pointer;
     box-shadow: 0px 0px 0px 7px #fff;
@@ -331,7 +331,7 @@ p.legend i{
 
 .submit:hover,
 .submit:focus {
-    background: #f13f57;
+    background: #f13a05;
     color: #fff;
 }
 
