@@ -1,7 +1,7 @@
 var hs_utils = {
 
     getViewUrl: function (url) {
-        return "http://localhost:8080/" + url;
+        return "http://localhost:63342/hzsparrow-boot-base-view/" + url;
     },
 
     getServerUrl: function (url) {
