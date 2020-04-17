@@ -13,23 +13,35 @@ hzsparrow-spring-boot基于spring-boot2.1.9版本，想提升版本的同学，�
 
 #### 使用说明
 在项目的pom文件中引入hzsparrow-framework-spring-boot-starter即可
-    <groupId>com.hzsparrow.framework</groupId>
-        <artifactId>hzsparrow-framework-spring-boot-starter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    
+```
+<groupId>com.hzsparrow.framework</groupId>
+    <artifactId>hzsparrow-framework-spring-boot-starter</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+```
+
 目前支持
-阿里大于sms，在项目配置文件中配置阿里大于相关配置
+    阿里大于sms，在项目配置文件中配置阿里大于相关配置
+    
+```
 hzsparrow:
-  aliyunsms:
-    access-key-id: 
-    access-secret: 
-文件上传下载工具
+    aliyunsms:
+        access-key-id: 
+        access-secret: 
+```
+
+    文件上传下载工具
+    
+```
 hzsparrow:
-  fileupload:
-    serverType: local
-    local:
-      rootPath:
-      secondPath: 
-具体配置可自行查看配置描述
+    fileupload:
+        serverType: local
+        local:
+            rootPath:
+            secondPath: 
+```
+
+    具体配置可自行查看配置描述
 #### 参与贡献
     1、
 
