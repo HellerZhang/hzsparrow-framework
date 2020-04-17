@@ -1,37 +1,22 @@
 # hzsparrow-spring-boot
 
 #### 介绍
-基于SpringBoot的hzsparrow工具，麻雀虽小五脏俱全。
+基于SpringBoot的hzsparrow工具，麻雀虽小五脏俱全。致力于打造解决实际开发中遇到的大量简单问题，给出较为通用的解决方式，以及提供多种可以方便开发的工具类。用最少的代码解决开发问题是我们的最高最求。
 
 #### 软件架构
-软件架构说明
+hzsparrow-spring-boot基于spring-boot2.1.9版本，想提升版本的同学，可自行在hzsparrow-framework-parent项目中修改版本依赖。
 
 
 #### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+目前hzsparrow-spring-boot发布了SNAPSHOT版本到一个Maven私服，需要的可以私信我。
+自己比较懂Maven的，可自行打包。
 
 #### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
+    在项目的pom文件中引入hzsparrow-framework-spring-boot-starter即可
+    <groupId>com.hzsparrow.framework</groupId>
+        <artifactId>hzsparrow-framework-spring-boot-starter</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    
 #### 参与贡献
+    1、
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
