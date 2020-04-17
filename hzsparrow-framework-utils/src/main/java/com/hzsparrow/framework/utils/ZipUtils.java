@@ -22,14 +22,15 @@ public class ZipUtils {
     public static void main(String[] args) throws Exception {
         ZipUtils zipHelper = new ZipUtils();
 
-        List<ZipModel> fileList = zipHelper.unZip("D:\\test\\样式测试1.zip", "D:\\test\\test1");
-        for (ZipModel zm : fileList) {
-            System.out.print(" zm.getStrFileName() = " + zm.getStrFileName() + "  |  ");
-            System.out.print(" zm.getStrFileSuffix() = " + zm.getStrFileSuffix() + "  |  ");
-            System.out.print(" zm.getStrFileSize() = " + zm.getlFileSize() / 1024 + "  |  ");
-            System.out.print(" zm.getStrFileUrl() = " + zm.getStrFileUrl() + "  |  ");
-
-        }
+//        List<ZipModel> fileList = zipHelper.unZip("D:\\test\\AO_back_a4a12045_58e8_4f8a_9083_26eae9815467", "D:\\test\\test2");
+//        for (ZipModel zm : fileList) {
+//            System.out.print(" zm.getStrFileName() = " + zm.getStrFileName() + "  |  ");
+//            System.out.print(" zm.getStrFileSuffix() = " + zm.getStrFileSuffix() + "  |  ");
+//            System.out.print(" zm.getStrFileSize() = " + zm.getlFileSize() / 1024 + "  |  ");
+//            System.out.print(" zm.getStrFileUrl() = " + zm.getStrFileUrl() + "  |  ");
+//
+//        }
+        zipHelper.zip("D:\\项目文档\\财政数据导入\\一体化部署文档\\export\\13fed998-0613-4a1f-8e44-9c0452a93f88", "D:\\项目文档\\财政数据导入\\一体化部署文档\\export\\2019张家口市第七中学130700201936000400001010070000600001.epkg", "随便一个注释");
         //		logger.debug("-----------------------------------------------");
         //		List<ZipModel> fileList = zipHelper.unZip(zipfile, null);
         //		for (ZipModel zm : fileList) {
@@ -42,19 +43,23 @@ public class ZipUtils {
         //		}
     }
 
+    public String zip(String src, String archive, String comment) throws FileNotFoundException, IOException {
+        return zip(src, archive, comment, null);
+    }
+
     /**
      * 对文件夹或者文件进行压缩
-     * 
+     *
+     * @param src     源文件/文件夹
+     * @param archive 文件输出目录
+     * @param comment 压缩包注释
+     * @throws FileNotFoundException
+     * @throws IOException           void
      * @Title: zip
      * @Description: 对文件夹或者文件进行压缩
      * @author Dong
-     * @param src
-     * @param archive
-     * @param comment
-     * @throws FileNotFoundException
-     * @throws IOException void
      */
-    public String zip(String src, String archive, String comment) throws FileNotFoundException, IOException {
+    public String zip(String src, String archive, String comment, String zipEncoding) throws FileNotFoundException, IOException {
 
         File srcFile = new File(src);
         if (!srcFile.exists() || (srcFile.isDirectory() && srcFile.list().length == 0)) {
@@ -71,7 +76,7 @@ public class ZipUtils {
 
         ZipOutputStream zos = new ZipOutputStream(csum);
         //支持中文   
-        zos.setEncoding("GBK");
+        zos.setEncoding(StringUtils.isBlank(zipEncoding) ? "GBK" : zipEncoding);
         BufferedOutputStream out = new BufferedOutputStream(zos);
         //设置压缩包注释   
         if (StringUtils.isNotBlank(comment)) zos.setComment(comment);
@@ -84,6 +89,7 @@ public class ZipUtils {
         writeRecursive(zos, out, srcFile, srcFile.getAbsolutePath());
 
         out.close();
+        zos.close();
         // 注：校验和要在流关闭后才准备，一定要放在流被关闭后使用   
         logger.debug("Checksum: " + csum.getChecksum().getValue());
         return archive;
@@ -91,29 +97,30 @@ public class ZipUtils {
 
     /**
      * 递归压缩
-     * 
-     * @Title: writeRecursive
-     * @Description: 递归压缩
-     * @author Dong
+     *
      * @param zos
      * @param bo
      * @param srcFile
      * @param prefixDir
      * @throws IOException
      * @throws FileNotFoundException void
+     * @Title: writeRecursive
+     * @Description: 递归压缩
+     * @author Dong
      */
     private void writeRecursive(ZipOutputStream zos, BufferedOutputStream bo, File srcFile, String prefixDir)
             throws IOException, FileNotFoundException {
         ZipEntry zipEntry;
 
         String filePath = srcFile.getAbsolutePath();
-        String entryName = filePath.replace(prefixDir, "").replace(File.separator, "");
+        String entryName = filePath.replace(prefixDir, "").replaceFirst("\\" + File.separator, "");
         if (srcFile.isDirectory()) {
             if (!"".equals(entryName)) {
                 logger.debug("正在创建目录 - " + srcFile.getAbsolutePath() + "  entryName=" + entryName);
 
-                //如果是目录，则需要在写目录后面加上 /    
-                zipEntry = new ZipEntry(entryName + File.separator);
+                //如果是目录，则需要在写目录后面加上 /
+                entryName = entryName + File.separator;
+                zipEntry = new ZipEntry(entryName);
                 zos.putNextEntry(zipEntry);
             }
 
@@ -150,16 +157,16 @@ public class ZipUtils {
 
     /**
      * 解压文件
-     * 
-     * @Title: unZip
-     * @Description: 解压文件
-     * @author Dong
-     * @param archive 压缩包路径
+     *
+     * @param archive       压缩包路径
      * @param decompressDir 解压路径
      * @return
      * @throws IOException
      * @throws FileNotFoundException
-     * @throws ZipException List<String>
+     * @throws ZipException          List<String>
+     * @Title: unZip
+     * @Description: 解压文件
+     * @author Dong
      */
     public List<ZipModel> unZip(String archive, String decompressDir, String unZipPath)
             throws IOException, FileNotFoundException, ZipException {
@@ -247,7 +254,7 @@ public class ZipUtils {
 
     /**
      * 获取zip随机文件名
-     * 
+     *
      * @return
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:22:55
@@ -260,7 +267,7 @@ public class ZipUtils {
 
     /**
      * 获取zip随机路径名
-     * 
+     *
      * @return
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:22:07

@@ -8,13 +8,21 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.beanutils.converters.SqlDateConverter;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.util.ReflectionUtils;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Apache BeanUtils的等价类，只是将check exception改为uncheck exception
- * 
+ *
  * @author badqiu
  * @author Jades.He
  * @since 2014.06.25
@@ -28,8 +36,8 @@ public class SimpleBeanUtils {
 
     /**
      * Handle the given reflection exception.
-     * 
-     * @param ex the reflection exception to handle
+     *
+     * @param e the reflection exception to handle
      */
     private static void handleReflectionException(Exception e) {
         ReflectionUtils.handleReflectionException(e);
@@ -50,9 +58,9 @@ public class SimpleBeanUtils {
     /**
      * Copy property values from the origin bean to the instance of the destination class for all
      * cases where the property names are the same.
-     * 
+     *
      * @param destClass Destination class
-     * @param orig Origin bean whose properties are retrieved
+     * @param orig      Origin bean whose properties are retrieved
      * @return instance of the destination class
      * @author Jades.He
      */
@@ -224,6 +232,64 @@ public class SimpleBeanUtils {
         } catch (Exception e) {
             handleReflectionException(e);
         }
+    }
+
+    public static <T> List<T> cloneList(Class<T> type, List list) throws Exception {
+        List<T> listResult = null;
+        if (CollectionUtils.isNotEmpty(list)) {
+            listResult = new ArrayList<>();
+            for (Object u : list) {
+                T modelBO = type.newInstance();
+                BeanUtils.copyProperties(modelBO, u);
+                listResult.add(modelBO);
+            }
+        }
+        return listResult;
+    }
+
+    public static <T> T cloneBean(Class<T> type, Object bo) throws Exception {
+        T result = null;
+        if (bo != null) {
+            result = type.newInstance();
+            BeanUtils.copyProperties(result, bo);
+        }
+        return result;
+    }
+
+    public static Map<String, Object> bean2map(Object obj) throws Exception {
+        if (obj == null) {
+            return null;
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
+            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+            for (PropertyDescriptor property : propertyDescriptors) {
+                String key = property.getName();
+                // 过滤class属性
+                if (!key.equals("class")) {
+                    // 得到property对应的getter方法
+                    Method getter = property.getReadMethod();
+                    Object value = getter.invoke(obj);
+                    //if ( value != null ) {
+                    map.put(key, value);
+                    //}
+                }
+            }
+        } catch (Exception e) {
+            //System.out.println("transBean2Map Error " + e);
+            throw new Exception(e);
+        }
+        return map;
+    }
+
+    public static <T> T map2bean(Class<T> type, Map<String, Object> map) throws Exception {
+        T result = null;
+        if (map != null) {
+            result = type.newInstance();
+            SimpleBeanUtils.populate(result, map);
+        }
+        return result;
     }
 
     /*

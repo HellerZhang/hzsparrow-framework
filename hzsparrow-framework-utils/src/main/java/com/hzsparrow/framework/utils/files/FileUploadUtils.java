@@ -1003,6 +1003,8 @@ public class FileUploadUtils {
         try {
             if (isIe || isIe11) {
                 result = URLEncoder.encode(fileName, "UTF-8");
+                result = result.replaceAll("\\+", "%20");
+                result = result.replaceAll("\\%2b", "+");
             } else {
                 result = new String(fileName.replaceAll(" ", "").getBytes("UTF-8"), "ISO8859-1");
             }

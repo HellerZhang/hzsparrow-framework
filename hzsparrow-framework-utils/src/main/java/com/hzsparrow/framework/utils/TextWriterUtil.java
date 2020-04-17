@@ -10,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 
 /**
- * 
  * @author Einstein.Liu
  * @since 2019年7月11日 下午6:55:02
  */
@@ -18,7 +17,7 @@ public class TextWriterUtil {
 
     /**
      * 将字符串写入到文件中，此方法将覆盖原文件内容
-     * 
+     *
      * @param file
      * @param text
      * @return
@@ -29,6 +28,7 @@ public class TextWriterUtil {
             BufferedWriter writer = new BufferedWriter(new FileWriter(new File(file)));
             writer.write(text);
             writer.flush();
+            writer.close();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -38,7 +38,7 @@ public class TextWriterUtil {
 
     /**
      * 写入UTF8格式的内容到文件，此方法将覆盖原文件内容
-     * 
+     *
      * @param filePath
      * @param text
      * @return
@@ -63,7 +63,7 @@ public class TextWriterUtil {
 
     /**
      * 将字符串写入到文件中，此方法将覆盖原文件内容
-     * 
+     *
      * @param file
      * @param text
      * @return

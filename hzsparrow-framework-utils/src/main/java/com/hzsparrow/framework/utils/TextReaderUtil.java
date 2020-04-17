@@ -7,7 +7,6 @@ package com.hzsparrow.framework.utils;
 import java.io.*;
 
 /**
- * 
  * @author Einstein.Liu
  * @since 2019年7月11日 下午6:48:54
  */
@@ -21,7 +20,7 @@ public class TextReaderUtil {
 
     /**
      * 读取一行
-     * 
+     *
      * @param file
      * @return
      */
@@ -37,7 +36,7 @@ public class TextReaderUtil {
 
     /**
      * 读取一行
-     * 
+     *
      * @param file
      * @return
      */
@@ -45,6 +44,7 @@ public class TextReaderUtil {
         String readLine = "";
         try {
             readLine = file.readLine();
+            file.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class TextReaderUtil {
 
     /**
      * 读取全部内容
-     * 
+     *
      * @param file
      * @return
      */

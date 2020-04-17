@@ -31,6 +31,8 @@ public class DefaultFileNameConverter implements FileNameConverter {
         try {
             if (isIe || isIe11) {
                 result = URLEncoder.encode(name, "UTF-8");
+                result = result.replaceAll("\\+", "%20");
+                result = result.replaceAll("\\%2b", "+");
             } else {
                 result = new String(name.replaceAll(" ", "").getBytes("UTF-8"), "ISO8859-1");
             }

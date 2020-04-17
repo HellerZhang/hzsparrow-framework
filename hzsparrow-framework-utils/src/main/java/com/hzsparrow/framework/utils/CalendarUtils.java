@@ -19,14 +19,14 @@ import java.util.GregorianCalendar;
 
 /**
  * CalendarUtils
- * 
+ *
  * @author Jades.He
  * @since 2014.11.20
  */
 public class CalendarUtils extends DateUtils {
 
-    private static String[] cnArray = new String[] { "〇", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一",
-            "十二" };
+    private static String[] cnArray = new String[]{"〇", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一",
+            "十二"};
 
     private static final Logger logger = LoggerFactory.getLogger(CalendarUtils.class);
 
@@ -70,7 +70,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * Gets start of the day with time "00:00:00.000".
-     * 
+     *
      * @param date Date
      * @return Date
      */
@@ -86,7 +86,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * Gets end of the day with time "23:59:59.999".
-     * 
+     *
      * @param date Date
      * @return Date
      */
@@ -102,7 +102,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * Checks if two date objects are on the same day ignoring year.
-     * 
+     *
      * @param date1 the first date, not altered
      * @param date2 the second date, not altered
      * @return true if they represent the same day
@@ -124,7 +124,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * Gets a date with giving milliseconds.
-     * 
+     *
      * @param milliseconds the milliseconds since January 1, 1970, 00:00:00 GMT.
      * @return Date
      */
@@ -134,7 +134,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 将Date对象格式化为字符串，格式为：yyyy-MM-dd
-     * 
+     *
      * @param date Date
      * @return 日期字符串
      */
@@ -147,9 +147,9 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 将Date对象格式化为用户指定格式的字符串
-     * 
+     *
      * @param date
-     * @param dateFormat
+     * @param pattern
      * @return
      * @author Dong
      * @since 2017年3月7日 上午11:43:58
@@ -162,7 +162,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 将Date对象格式化为字符串，格式为：yyyy-MM-dd HH:mm:ss
-     * 
+     *
      * @param date Date
      * @return 日期字符串
      */
@@ -175,7 +175,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 将Date对象格式化为字符串，格式为：yyyy-MM-dd HH:mm:ss.SSS
-     * 
+     *
      * @param date Date
      * @return 日期字符串
      */
@@ -185,7 +185,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 将毫秒数格式化为日期字符串，格式为：yyyy-MM-dd HH:mm:ss.SSS
-     * 
+     *
      * @param milliseconds the milliseconds since January 1, 1970, 00:00:00 GMT.
      * @return 日期字符串
      */
@@ -195,7 +195,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 格式化为中文年月 二〇一七年三月
-     * 
+     *
      * @param date
      * @return
      * @author Leon.Dong
@@ -230,7 +230,7 @@ public class CalendarUtils extends DateUtils {
      * <li>yyyy-MM-dd
      * <li>yyyy年MM月dd日
      * </ol>
-     * 
+     *
      * @param dateStr 日期字符串
      * @return Date
      */
@@ -239,14 +239,14 @@ public class CalendarUtils extends DateUtils {
             return null;
         }
 
-        String[] formats = { DATETIME_FORMAT, // NL
+        String[] formats = {DATETIME_FORMAT, // NL
                 DATETIME_LONG_FORMAT, // NL
                 DATETIME_FORMAT_NOSPLIT, //NL
                 DATE_FORMAT, // NL
                 DATE_FORMAT_CHINESE, // NL
                 DATE_FORMAT_SLASH, // NL
                 DATETIME_FORMAT_SLASH, // NL
-                DATETIME_LONG_FORMAT_SLASH };
+                DATETIME_LONG_FORMAT_SLASH};
 
         Date date = null;
         try {
@@ -259,7 +259,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 将毫秒数转换为Date对象
-     * 
+     *
      * @param milliseconds the milliseconds since January 1, 1970, 00:00:00 GMT.
      * @return Date
      */
@@ -269,7 +269,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 获得日期与今年相差的年份数，如年龄
-     * 
+     *
      * @param date
      * @return int
      * @author Dong
@@ -281,7 +281,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 获得两个日期之间相差的年数
-     * 
+     *
      * @param date1
      * @param date2
      * @return int
@@ -303,7 +303,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 计算两个日期之间的月份差
-     * 
+     *
      * @param date1
      * @param date2
      * @return
@@ -321,8 +321,23 @@ public class CalendarUtils extends DateUtils {
     }
 
     /**
+     * 计算两个日期之间的天数差
+     *
+     * @param start
+     * @param end
+     * @return
+     */
+    public static int getDayDifference(Date start, Date end) {
+        try {
+            return (int) ((parseDate(formatDate(end, "yyyy-MM-dd"), "yyyy-MM-dd").getTime() - parseDate(formatDate(start, "yyyy-MM-dd"), "yyyy-MM-dd").getTime()) / 86400000);
+        } catch (ParseException e) {
+            return 0;
+        }
+    }
+
+    /**
      * 计算指定秒后的时间
-     * 
+     *
      * @param date
      * @param amount
      * @return
@@ -338,9 +353,9 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 给日期增加或减少天数
-     * 
+     *
      * @param date Date
-     * @param day 天数
+     * @param day  天数
      * @return Date
      * @author 何珏 2014-11-20
      */
@@ -353,7 +368,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 给日期+00:00:00.000
-     * 
+     *
      * @param date Date
      * @return Date
      */
@@ -369,7 +384,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 给日期+23:59:59.999
-     * 
+     *
      * @param date Date
      * @return Date
      */
@@ -385,7 +400,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 获取指定日期的 当周开始时间
-     * 
+     *
      * @param date
      * @return
      * @author Leon
@@ -409,7 +424,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 获取指定日期的 当周结束时间
-     * 
+     *
      * @param date
      * @return
      * @author Leon
@@ -427,7 +442,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 获取指定日期的 当月的开始时间
-     * 
+     *
      * @param date
      * @return
      * @author Leon
@@ -449,7 +464,7 @@ public class CalendarUtils extends DateUtils {
 
     /**
      * 获取指定日期的 当月的结束时间
-     * 
+     *
      * @param date
      * @return
      * @author Leon
@@ -469,10 +484,10 @@ public class CalendarUtils extends DateUtils {
     }
 
     /**
+     * @return Date
      * @Title getCurTime
      * @Description: 从中国科学院国家授时中心获取当前时间
      * @author: Wang Mei
-     * @return Date
      */
     public static Date getCurTime(int isDebug) {
         if (isDebug == 1) {
