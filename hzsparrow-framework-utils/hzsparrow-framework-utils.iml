@@ -67,7 +67,7 @@
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-hash:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.hzsparrow.framework.utils:hzsparrow-framework-utils-fastdfs:0.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.6" level="project" />
-    <orderEntry type="library" name="Maven: com.github.tobato:fastdfs-client:1.26.7" level="project" />
+    <orderEntry type="library" name="Maven: com.github.tobato:fastdfs-client:1.27.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.28" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
