@@ -3,7 +3,6 @@ let indexManager = {
     sessionUserUrl: "/hzs/getLoginUser",
     logoutUrl: "/hzs/logout",
     userData: null,
-
     init: function () {
         hs_utils.post(indexManager.sessionUserUrl, {}, function (data) {
             if (data.success) {
@@ -18,7 +17,13 @@ let indexManager = {
             if (data.success) {
                 let treeHtml = indexManager.createTree(data.data);
                 $("#navTree").html(treeHtml);
+                indexManager.layuiInit();
             }
+        });
+    },
+
+    layuiInit: function () {
+        layui.use(['element', 'form'], function () {
         });
     },
 
@@ -58,7 +63,11 @@ let indexManager = {
         }
         if (hsmType == 1) {
             hs_utils.getView(url, {}, function (data) {
+                $('.popLayer').remove()
                 $("#contentBody").html(data);
+                $(document.body).append($("#popLayer").html());
+                $('#popLayer').remove()
+                layui.form.render();
             });
         } else if (hsmType == 2) {
             window.open(url);

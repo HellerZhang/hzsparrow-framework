@@ -1,0 +1,75 @@
+<script src="js/admin/role.js"></script>
+<script src="js/admin/roleMenuAssign.js"></script>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>角色管理</legend>
+</fieldset>
+<table id="roleTable" lay-filter="roleTable"></table>
+<div id="roleTableToolBar" style="display: none;">
+    <div class="layui-inline" lay-event="add" title="新增"><i class="layui-icon layui-icon-add-1"></i></div>
+</div>
+<div id="roleTableItemToolBar" style="display: none;">
+    <a class="layui-icon" href="javascript:void(0);" style="font-size: 20px;" lay-event="edit" title="编辑">&#xe642;</a>
+    &nbsp;&nbsp;
+    <a class="layui-icon" href="javascript:void(0);" style="font-size: 20px;" lay-event="remove" title="删除">&#xe640;</a>
+    &nbsp;&nbsp;
+    <a class="layui-icon" href="javascript:void(0);" style="font-size: 20px;" lay-event="assign"
+       title="分配权限">&#xe716;</a>
+</div>
+<div id="popLayer" style="display: none;">
+    <div id="roleDiv" class="popLayer" style="display: none;">
+        <form id="roleForm" class="layui-form" lay-filter="roleForm" style="width: 400px;margin-top: 30px;">
+            <input type="hidden" name="hsrId"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">角色名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="hsrName" required lay-verify="required" placeholder="请输入角色名称"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">角色类型</label>
+                <div class="layui-input-block">
+                    <select name="hsrType" lay-verify="required">
+                        <option value=""></option>
+                        <option value="1">管理</option>
+                        <option value="2">普通</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单图标</label>
+                <div class="layui-input-block">
+                    <input type="text" name="icon" placeholder="请输入菜单图标"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="sortNum" required lay-verify="required|number" placeholder="请输入排序号"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="text-align: right">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="roleSave">确认</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="roleMenuAssignDiv" class="popLayer" style="display: none;width: 450px;">
+        <div style="width: 450px;">
+            <div id="roleMenuAssignTree" style="height:320px; margin-top: 15px;margin-left: 20px;"></div>
+            <div class="layui-form-item">
+                <div style="text-align: center;">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="roleMenuAssign">分配</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
