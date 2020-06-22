@@ -37,6 +37,10 @@ public class HzsUserService {
      */
     @Transactional
     public ResultDTO<Object> save(HzsUser entity, LoginVO user) {
+        HzsUser oldEntity = getByAccount(entity.getHsuAccount()).getData();
+        if (oldEntity != null) {
+            throw new RuntimeException("账号已存在！");
+        }
         entity.setHsuId(UUID.randomUUID().toString());
         entity.setHsuPassword(getEntryPassword(entity.getHsuAccount(), entity.getHsuPassword()));
         entity.setDeleteFlag(DeleteFlagEnum.NORMAL.getValue());
