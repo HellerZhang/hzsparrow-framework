@@ -7,8 +7,9 @@ var roleManager = {
     isAdd: false,
     roleTable: null,
     init: function () {
-        layui.use(['table', 'util', 'layer'], function () {
+        layui.use(['table', 'util', 'layer', 'form'], function () {
             roleManager.refreshTable();
+            layui.form.on('submit(roleSearch)', roleManager.search);
         });
     },
 
@@ -128,9 +129,22 @@ var roleManager = {
         });
     },
 
+    // 查询
+    search: function (data) {
+        console.log(data)
+        roleManager.reloadTable(data.field);
+        return false;
+    },
+
     // 重载表格
-    reloadTable: function () {
-        roleManager.roleTable.reload();
+    reloadTable: function (data) {
+        if (data) {
+            roleManager.roleTable.reload({
+                where: data
+            });
+        } else {
+            roleManager.roleTable.reload();
+        }
     }
 }
 roleManager.init();
