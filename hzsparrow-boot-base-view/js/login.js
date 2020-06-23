@@ -1,7 +1,6 @@
 let loginManager = {
     login: function () {
         let postData = $("#loginForm").serializeObject();
-        console.log(postData);
         if (!postData.account || !postData.password) {
             layui.layer.msg("请将账号密码填写完整！");
             return;

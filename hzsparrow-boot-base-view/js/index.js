@@ -7,6 +7,7 @@ let indexManager = {
         hs_utils.post(indexManager.sessionUserUrl, {}, function (data) {
             if (data.success) {
                 indexManager.userData = data.data;
+                $('#indexUserName').html(indexManager.userData.userName);
                 indexManager.refreshTree();
             }
         })

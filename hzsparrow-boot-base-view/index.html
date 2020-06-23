@@ -18,22 +18,12 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    贤心
+                    <span id="indexUserName"></span>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -67,6 +57,14 @@
         <!-- 底部固定区域 -->
         <a href="http://www.beian.miit.gov.cn">冀ICP备19026997号</a>
     </div>
+</div>
+<div id="tableToolBar" style="display: none;">
+    <div class="layui-inline" lay-event="add" title="新增"><i class="layui-icon layui-icon-add-1"></i></div>
+</div>
+<div id="tableItemToolBar" style="display: none;">
+    <a class="layui-icon" href="javascript:void(0);" style="font-size: 20px;" lay-event="edit" title="编辑">&#xe642;</a>
+    &nbsp;&nbsp;
+    <a class="layui-icon" href="javascript:void(0);" style="font-size: 20px;" lay-event="remove" title="删除">&#xe640;</a>
 </div>
 </body>
 </html>
