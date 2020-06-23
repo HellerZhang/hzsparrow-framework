@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.hzsparrow.boot.base.contant.DeleteFlagEnum;
 import com.hzsparrow.boot.base.entity.HzsUser;
 import com.hzsparrow.boot.base.mapper.HzsUserMapper;
+import com.hzsparrow.boot.base.vo.HzsUserPageVO;
 import com.hzsparrow.boot.base.vo.LoginVO;
 import com.hzsparrow.framework.model.page.PageQO;
 import com.hzsparrow.framework.model.page.PageResultDTO;
@@ -127,10 +128,10 @@ public class HzsUserService {
      * @param pageQO
      * @return
      */
-    public ResultDTO<PageResultDTO<HzsUser>> pageFindAll(String hsuName, String mobile, PageQO pageQO) {
+    public ResultDTO<PageResultDTO<HzsUserPageVO>> pageFindAll(String hsuName, String mobile, PageQO pageQO) {
         PageHelper.startPage(pageQO.getPage(), pageQO.getSize());
-        List<HzsUser> list = hzsUserMapper.selectAll(hsuName, mobile);
-        return ResultDTO.getDataSuccess(new PageResultDTO<>((Page<HzsUser>) list));
+        List<HzsUserPageVO> list = hzsUserMapper.selectAll(hsuName, mobile);
+        return ResultDTO.getDataSuccess(new PageResultDTO<>((Page<HzsUserPageVO>) list));
     }
 
     /**

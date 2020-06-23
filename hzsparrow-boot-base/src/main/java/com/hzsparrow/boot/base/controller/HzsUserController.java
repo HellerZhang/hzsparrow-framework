@@ -3,6 +3,7 @@ package com.hzsparrow.boot.base.controller;
 import com.hzsparrow.boot.base.component.BaseController;
 import com.hzsparrow.boot.base.entity.HzsUser;
 import com.hzsparrow.boot.base.service.HzsUserService;
+import com.hzsparrow.boot.base.vo.HzsUserPageVO;
 import com.hzsparrow.framework.model.page.PageQO;
 import com.hzsparrow.framework.model.page.PageResultDTO;
 import com.hzsparrow.framework.model.result.ResultDTO;
@@ -72,7 +73,7 @@ public class HzsUserController extends BaseController {
      * @return
      */
     @RequestMapping("/pageFindAll")
-    public ResultDTO<PageResultDTO<HzsUser>> pageFindAll(String hsuName, String mobile, PageQO pageQO) {
+    public ResultDTO<PageResultDTO<HzsUserPageVO>> pageFindAll(String hsuName, String mobile, PageQO pageQO) {
         return hzsUserService.pageFindAll(hsuName, mobile, pageQO);
     }
 
