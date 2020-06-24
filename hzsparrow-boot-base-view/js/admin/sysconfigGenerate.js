@@ -41,25 +41,40 @@ var sysconfigGenerate = {
         let resultHtml = "<div class=\"layui-form-item\">";
         for (let index in datas) {
             let data = datas[index];
-            if (data.hsscType == 5) {
-                resultHtml += sysconfigGenerate.generateItemHtml5(data);
-            }
+            resultHtml += sysconfigGenerate.generateItemHtmlFuns[data.hsscType - 1](data);
         }
         resultHtml += "</div>";
         return resultHtml;
     },
 
-    generateItemHtml5: function (data) {
-        let resultHtml =
-            "<div class=\"layui-inline\" style=\"width: 30%;\">\n" +
-            "   <label class=\"layui-form-label\">" + data.hsscName + "</label>\n" +
-            "   <div class=\"layui-input-inline\">\n" +
-            "       <input type=\"checkbox\" name=\"" + data.hsscFlag + "\" required lay-verify=\"required\" lay-skin=\"switch\" lay-text=\"是|否\" " +
-            (data.hsscValue == '1' ? "checked" : "") + " value=\"1\">\n" +
-            "   </div>\n" +
-            "</div>";
-        return resultHtml;
-    },
+    generateItemHtmlFuns: [
+        function (data) {
+
+        },// 1文本
+        function (data) {
+
+        },// 2单选
+        function (data) {
+
+        },// 3多选
+        function (data) {
+
+        },// 4时间
+        function (data) {
+            let resultHtml =
+                "<div class=\"layui-inline\" style=\"width: 30%;\">\n" +
+                "   <label class=\"layui-form-label\">" + data.hsscName + "</label>\n" +
+                "   <div class=\"layui-input-inline\">\n" +
+                "       <input type=\"checkbox\" name=\"" + data.hsscFlag + "\" required lay-verify=\"required\" lay-skin=\"switch\" lay-text=\"是|否\" " +
+                (data.hsscValue == '1' ? "checked" : "") + " value=\"1\">\n" +
+                "   </div>\n" +
+                "</div>";
+            return resultHtml;
+        },// 5开关
+        function (data) {
+
+        }// 6数值
+    ],
 
     // 获取系统参数中的分组数组
     getGroups: function (data) {
