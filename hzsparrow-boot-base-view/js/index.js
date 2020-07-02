@@ -2,15 +2,47 @@ let indexManager = {
     treeUrl: "/hzs/rolemenu/findMenuByRoleId",
     sessionUserUrl: "/hzs/getLoginUser",
     logoutUrl: "/hzs/logout",
+    sysConfigFindUrl: "/hzs/sysconfig/findAll",
+    sysConfigDatas: null,
     userData: null,
+    currViewUrl: null,
+    currViewType: null,
     init: function () {
         hs_utils.post(indexManager.sessionUserUrl, {}, function (data) {
             if (data.success) {
                 indexManager.userData = data.data;
                 $('#indexUserName').html(indexManager.userData.userName);
                 indexManager.refreshTree();
+                indexManager.refreshSysConfig();
             }
         })
+    },
+
+    refreshCurrView: function () {
+        if (indexManager.currViewUrl) {
+            indexManager.openContentPage(indexManager.currViewUrl, indexManager.currViewType);
+        }
+    },
+
+    getSysConfig: function (flag) {
+        for (let index in indexManager.sysConfigDatas) {
+            if (indexManager.sysConfigDatas[index].hsscFlag == flag) {
+                return indexManager.sysConfigDatas[index];
+            }
+        }
+        return null;
+    },
+
+    refreshSysConfig: function () {
+        hs_utils.post(indexManager.sysConfigFindUrl, {}, function (data) {
+            if (data.success) {
+                indexManager.sysConfigDatas = data.data;
+                let sysName = indexManager.getSysConfig('sys_name');
+                if (sysName) {
+                    $('#sys_name').html(sysName.hsscValue);
+                }
+            }
+        });
     },
 
     refreshTree: function () {
@@ -59,10 +91,14 @@ let indexManager = {
     },
 
     openContentPage: function (url, hsmType) {
+        indexManager.currViewUrl = null;
+        indexManager.currViewType = null;
         if (url == null || url == "" || url == "#") {
             return;
         }
         if (hsmType == 1) {
+            indexManager.currViewUrl = url;
+            indexManager.currViewType = hsmType;
             hs_utils.getView(url, {}, function (data) {
                 $('.popLayer').remove()
                 $("#contentBody").html(data);
