@@ -3,6 +3,7 @@ let indexManager = {
     sessionUserUrl: "/hzs/getLoginUser",
     logoutUrl: "/hzs/logout",
     sysConfigFindUrl: "/hzs/sysconfig/findAll",
+    userImgUrl: '/hzs/file/download?hsfId=',
     sysConfigDatas: null,
     userData: null,
     currViewUrl: null,
@@ -12,6 +13,9 @@ let indexManager = {
             if (data.success) {
                 indexManager.userData = data.data;
                 $('#indexUserName').html(indexManager.userData.userName);
+                if (indexManager.userData.imgId) {
+                    $('#indexUserImg').attr('src', hs_utils.getServerUrl(indexManager.userImgUrl + indexManager.userData.imgId));
+                }
                 indexManager.refreshTree();
                 indexManager.refreshSysConfig();
             }

@@ -109,7 +109,7 @@ var userManager = {
                     field: 'hsuName', title: '用户姓名', align: "center",
                     templet: function (d) {
                         if (d.imgId) {
-                            return d.hsuName + "<img src='" + hs_utils.getServerUrl(userManager.downloadUrl + d.imgId) + "'/>";
+                            return "<img class=\"layui-nav-img\" src='" + hs_utils.getServerUrl(userManager.downloadUrl + d.imgId) + "'/>" + d.hsuName;
                         } else {
                             return d.hsuName;
                         }

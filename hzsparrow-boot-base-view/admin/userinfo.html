@@ -5,13 +5,14 @@
 <form id="userinfoForm" class="layui-form" lay-filter="userinfoForm"
       style="margin-top: 30px;text-align: center;">
     <input type="hidden" name="hsuId"/>
-    <input type="hidden" name="imgId"/>
+    <input type="hidden" name="imgId" id="userinfoImgId"/>
     <input type="hidden" name="hsuAccount"/>
     <input type="hidden" name="hsrId"/>
     <div class="layui-form-item">
         <div class="layui-inline" style="height: 50px;">
             <div class="layui-input-block">
-                <img src="http://t.cn/RCzsdCq" class="layui-nav-img" style="width: 50px;height: 50px;">
+                <img id="userinfoImg" src="" onerror="this.src='img/index/defaultHead.jpg'" class="layui-nav-img"
+                     style="width: 50px;height: 50px;">
             </div>
         </div>
     </div>
