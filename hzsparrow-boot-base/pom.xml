@@ -3,16 +3,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.9.RELEASE</version>
+        <groupId>com.hzsparrow.framework.parent</groupId>
+        <artifactId>hzsparrow-framework-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.hzsparrow.boot.base</groupId>
-    <artifactId>hzsparrow-boot-base</artifactId>
+    <groupId>com.hzsparrow.business</groupId>
+    <artifactId>hzsparrow-business-base</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>hzsparrow-boot-base</name>
-    <description>Demo project for Spring Boot</description>
+    <description>
+        hzsparrow业务模块-基础功能模块
+        1、系统参数；2、用户管理；3、角色管理；4、菜单管理；5、登录；等基础功能
+    </description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -59,11 +62,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -125,6 +123,11 @@
                 <includes>
                     <include>*</include>
                 </includes>
+                <!-- 打包发布时使用，单独打包时注释即可 -->
+                <excludes>
+                    <exclude>application.yml</exclude>
+                    <exclude>mybatis-generator/*</exclude>
+                </excludes>
             </resource>
         </resources>
         <finalName>hazparrow-base</finalName>
@@ -132,6 +135,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 打包发布时排除依赖jar包，单独部署时，将配置注释掉即可。 -->
+                <configuration>
+                    <includes>
+                        <include>
+                            <groupId>non-exists</groupId>
+                            <artifactId>non-exists</artifactId>
+                        </include>
+                    </includes>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -140,7 +153,7 @@
                 <executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
-                        <phase>deploy</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
@@ -169,4 +182,14 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://39.97.237.211:8081/repository/hzsparrow-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://39.97.237.211:8081/repository/hzsparrow-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
