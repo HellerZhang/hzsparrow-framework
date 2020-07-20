@@ -73,11 +73,20 @@ let indexManager = {
                 treeHtml += " layui-nav-itemed";
             }
             treeHtml += "\">";
-            treeHtml += "<a href=\"javascript:indexManager.openContentPage('" + data[index].attribute.url + "'," + data[index].attribute.hsmType + ");\">" + data[index].name + "</a>";
+            let icon = "";
+            if (data[index].attribute.icon) {
+                icon += "<i class=\"layui-icon " + data[index].attribute.icon + "\" style='color: white; font-size: 15px;'></i>";
+            }
+            treeHtml += "<a href=\"javascript:indexManager.openContentPage('" + data[index].attribute.url + "'," + data[index].attribute.hsmType + ");\">" + icon + "<span style='margin-left: 8px;'>" + data[index].name + "</span></a>";
             if (child.length > 0) {
-                treeHtml += "<dl class=\"layui-nav-child\">";
+                treeHtml += "<dl class=\"layui-nav-child\" >";
+                let childIcon = "";
                 for (let i in child) {
-                    treeHtml += "<dd><a href=\"javascript:indexManager.openContentPage('" + child[i].attribute.url + "'," + child[i].attribute.hsmType + ");\">" + child[i].name + "</a></dd>";
+                    if (child[i].attribute.icon) {
+                        childIcon += "<i class=\"layui-icon " + child[i].attribute.icon + "\" style='color: white; font-size: 8px;'></i>";
+                    }
+                    treeHtml += "<dd ><a href=\"javascript:indexManager.openContentPage('" + child[i].attribute.url + "'," + child[i].attribute.hsmType + ");\">" + childIcon + "<span style='margin-left: 8px;'>" + child[i].name + "</span></a></dd>";
+                    childIcon = "";
                 }
                 treeHtml += "</dl>";
             }
