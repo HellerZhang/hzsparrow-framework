@@ -14,6 +14,9 @@ public class TableInfo {
      */
     private String className;
 
+    /**
+     * 小驼峰类名
+     */
     private String className2Lower;
 
     /**
@@ -30,6 +33,8 @@ public class TableInfo {
      * 修改时间
      */
     private Date updateTime;
+
+    private String primaryKey;
 
     private List<ColumnInfo> columnInfoList;
 
@@ -87,5 +92,13 @@ public class TableInfo {
 
     public void setColumnInfoList(List<ColumnInfo> columnInfoList) {
         this.columnInfoList = columnInfoList;
+    }
+
+    public String getPrimaryKey() {
+        return primaryKey;
+    }
+
+    public void setPrimaryKey(String primaryKey) {
+        this.primaryKey = primaryKey;
     }
 }

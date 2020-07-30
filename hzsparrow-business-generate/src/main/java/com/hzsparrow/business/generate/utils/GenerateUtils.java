@@ -3,6 +3,7 @@ package com.hzsparrow.business.generate.utils;
 import com.hzsparrow.business.generate.common.GenerateTypeMap;
 import com.hzsparrow.business.generate.common.MysqlJavaTypeMap;
 import com.hzsparrow.business.generate.entity.ColumnInfo;
+import com.hzsparrow.business.generate.entity.GenConfig;
 import com.hzsparrow.business.generate.entity.TableInfo;
 import com.hzsparrow.framework.utils.CalendarUtils;
 import com.hzsparrow.framework.utils.StringFormatUtils;
@@ -18,24 +19,14 @@ public class GenerateUtils {
     /**
      * 项目空间路径
      */
-    private static final String PROJECT_PATH = "main/java/com/lp/demo";
-
-    /**
-     * mybatis空间路径
-     */
-    private static final String MYBATIS_PATH = "main/resources/mybatisMapper";
-
-    /**
-     * html空间路径
-     */
-    private static final String TEMPLATES_PATH = "main/resources/templates";
+    private static final String PROJECT_PATH = "d:/test/test";
 
     private static GenerateTypeMap generateTypeMap = new MysqlJavaTypeMap();
 
     /**
      * 设置列信息
      */
-    public static List<ColumnInfo> transColums(List<ColumnInfo> columns) {
+    public static List<ColumnInfo> transColumns(List<ColumnInfo> columns) {
         // 列信息
         List<ColumnInfo> columsList = new ArrayList<>();
         for (ColumnInfo column : columns) {
@@ -57,19 +48,19 @@ public class GenerateUtils {
      *
      * @return 模板列表
      */
-    public static VelocityContext getVelocityContext(TableInfo table) {
+    public static VelocityContext getVelocityContext(GenConfig genConfig, TableInfo table) {
         // java对象数据传递到模板文件vm
         VelocityContext velocityContext = new VelocityContext();
-//        String packageName = GenConfig.getPackageName();
-//        velocityContext.put("tableName", table.getTableName());
-//        velocityContext.put("tableComment", replaceKeyword(table.getTableComment()));
-//        velocityContext.put("primaryKey", table.getPrimaryKey());
-//        velocityContext.put("className", table.getClassName());
-//        velocityContext.put("classname", table.getClassname());
-//        velocityContext.put("moduleName", GenerateUtils.getModuleName(packageName));
-//        velocityContext.put("columns", table.getColumns());
-//        velocityContext.put("package", packageName + "." + table.getClassname());
-//        velocityContext.put("author", "Heller.Zhang");
+        String packageName = genConfig.getPackageName();
+        velocityContext.put("tableName", table.getTableName());
+        velocityContext.put("tableComment", replaceKeyword(table.getTableComment()));
+        velocityContext.put("primaryKey", table.getPrimaryKey());
+        velocityContext.put("className", table.getClassName());
+        velocityContext.put("classname", table.getClassName2Lower());
+        velocityContext.put("moduleName", GenerateUtils.getModuleName(packageName));
+        velocityContext.put("columns", table.getColumnInfoList());
+        velocityContext.put("package", packageName);
+        velocityContext.put("author", genConfig.getAuthor());
         velocityContext.put("datetime", CalendarUtils.formatDateTime(new Date()));
         return velocityContext;
     }
@@ -105,50 +96,11 @@ public class GenerateUtils {
         // 大写类名
         String className = table.getClassName();
         String javaPath = PROJECT_PATH + "/" + moduleName + "/";
-        String mybatisPath = MYBATIS_PATH + "/" + moduleName + "/" + className;
-        String htmlPath = TEMPLATES_PATH + "/" + moduleName + "/" + classname;
 
         if (StringUtils.isNotEmpty(classname)) {
             javaPath += classname.replace(".", "/") + "/";
         }
-
-        if (template.contains("domain.java.vm")) {
-            return javaPath + "domain" + "/" + className + ".java";
-        }
-
-        if (template.contains("Mapper.java.vm")) {
-            return javaPath + "mapper" + "/" + className + "Mapper.java";
-        }
-
-        if (template.contains("Service.java.vm")) {
-            return javaPath + "service" + "/" + "I" + className + "Service.java";
-        }
-
-        if (template.contains("ServiceImpl.java.vm")) {
-            return javaPath + "service" + "/" + className + "ServiceImpl.java";
-        }
-
-        if (template.contains("Controller.java.vm")) {
-            return javaPath + "controller" + "/" + className + "Controller.java";
-        }
-
-        if (template.contains("Mapper.xml.vm")) {
-            return mybatisPath + "Mapper.xml";
-        }
-
-        if (template.contains("list.html.vm")) {
-            return htmlPath + "/" + classname + ".html";
-        }
-        if (template.contains("add.html.vm")) {
-            return htmlPath + "/" + "add.html";
-        }
-        if (template.contains("edit.html.vm")) {
-            return htmlPath + "/" + "edit.html";
-        }
-        if (template.contains("sql.vm")) {
-            return classname + "Menu.sql";
-        }
-        return null;
+        return javaPath + className + template.substring(0, template.lastIndexOf("."));
     }
 
     /**
