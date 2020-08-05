@@ -1,0 +1,79 @@
+package ${package}.service;
+
+import com.hzsparrow.framework.model.result.ResultDTO;
+import ${package}.entity.${className}Entity;
+import ${package}.mapper.financial.${className}Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * ${tableComment}Service
+ */
+@Service
+public class ${className}Service {
+
+    @Autowired
+    private ${className}Mapper ${classname}Mapper;
+
+    /**
+     * 创建
+     *
+     * @param entity
+     * @return
+     */
+    @Transactional
+    public ResultDTO<Object> save(${className}Entity entity) {
+        entity.set${primaryKey.filedName4Upper}(UUID.randomUUID().toString());
+        ${classname}Mapper.insert(entity);
+        return ResultDTO.getOptionSuccess();
+    }
+
+    /**
+     * 修改
+     *
+     * @param entity
+     * @return
+     */
+    @Transactional
+    public ResultDTO<Object> edit(${className}Entity entity) {
+        ${classname}Mapper.updateByPrimaryKey(entity);
+        return ResultDTO.getOptionSuccess();
+    }
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @return
+     */
+    @Transactional
+    public ResultDTO<Object> remove(${primaryKey.fieldType} id) {
+        ${classname}Mapper.deleteByPrimaryKey(id);
+        return ResultDTO.getOptionSuccess();
+    }
+
+    /**
+     * 获取所有
+     *
+     * @return
+     */
+    public ResultDTO<List<${className}>> findAll() {
+        List<${className}> list = ${classname}Mapper.selectAll();
+        return ResultDTO.getDataSuccess(list);
+    }
+
+    /**
+     * 根据ID获取
+     *
+     * @param id
+     * @return
+     */
+    public ResultDTO<${className}> getById(${primaryKey.fieldType} id){
+        ${className} entity = ${classname}Mapper.selectByPrimaryKey(id);
+        return ResultDTO.getDataSuccess(entity);
+    }
+}

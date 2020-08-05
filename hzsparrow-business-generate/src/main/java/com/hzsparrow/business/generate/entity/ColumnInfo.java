@@ -13,6 +13,11 @@ public class ColumnInfo {
     private String fieldName;
 
     /**
+     * 大驼峰命名字段名
+     */
+    private String filedName4Upper;
+
+    /**
      * 列类型
      */
     private String dataType;
@@ -21,6 +26,11 @@ public class ColumnInfo {
      * java字段类型
      */
     private String fieldType;
+
+    /**
+     * jdbcType类型
+     */
+    private String jdbcType;
 
     /**
      * 列注释
@@ -43,6 +53,14 @@ public class ColumnInfo {
         this.fieldName = fieldName;
     }
 
+    public String getFiledName4Upper() {
+        return filedName4Upper;
+    }
+
+    public void setFiledName4Upper(String filedName4Upper) {
+        this.filedName4Upper = filedName4Upper;
+    }
+
     public String getDataType() {
         return dataType;
     }
@@ -57,6 +75,14 @@ public class ColumnInfo {
 
     public void setFieldType(String fieldType) {
         this.fieldType = fieldType;
+    }
+
+    public String getJdbcType() {
+        return jdbcType;
+    }
+
+    public void setJdbcType(String jdbcType) {
+        this.jdbcType = jdbcType;
     }
 
     public String getColumnComment() {

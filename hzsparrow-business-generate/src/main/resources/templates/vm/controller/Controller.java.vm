@@ -1,0 +1,62 @@
+package ${package}.controller;
+
+import com.hzsparrow.framework.model.result.ResultDTO;
+import ${package}.base.BaseController;
+import ${package}.entity.${className}Entity;
+import ${package}.service.${className}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/${moduleName}/${lclassname}")
+public class ${className}Controller extends BaseController {
+
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    /**
+     * 创建
+     *
+     * @param entity
+     * @return
+     */
+    @RequestMapping("/save")
+    public ResultDTO<Object> save(${className}Entity entity) {
+        return ${classname}Service.save(entity);
+    }
+
+    /**
+     * 修改
+     *
+     * @param entity
+     * @return
+     */
+    @RequestMapping("/edit")
+    public ResultDTO<Object> edit(${className}Entity entity) {
+        return ${classname}Service.edit(entity);
+    }
+
+    /**
+     * 删除角色
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/remove")
+    public ResultDTO<Object> remove(${primaryKey.fieldType} id) {
+        return ${classname}Service.remove(id);
+    }
+
+    /**
+     * 获取所有角色
+     *
+     * @return
+     */
+    @RequestMapping("/findAll")
+    public ResultDTO<List<${className}Entity>> findAll() {
+        return ${classname}Service.findAll();
+    }
+}

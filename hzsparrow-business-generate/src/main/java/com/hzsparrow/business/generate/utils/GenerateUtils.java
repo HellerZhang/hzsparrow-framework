@@ -33,11 +33,14 @@ public class GenerateUtils {
             // 列名转换成Java字段名
             String fieldName = StringFormatUtils.camelName4Lower(column.getColumnName());
             column.setFieldName(fieldName);
+            column.setFiledName4Upper(StringFormatUtils.camelName(column.getColumnName()));
 
             // 列的数据类型，转换成Java类型
             String fieldType = generateTypeMap.getJavaType(column.getDataType());
             column.setFieldType(fieldType);
-
+            // 列的数据类型，转换成jdbcType
+            String jdbcType = generateTypeMap.getJdbcType(column.getDataType());
+            column.setJdbcType(jdbcType);
             columsList.add(column);
         }
         return columsList;
@@ -57,6 +60,7 @@ public class GenerateUtils {
         velocityContext.put("primaryKey", table.getPrimaryKey());
         velocityContext.put("className", table.getClassName());
         velocityContext.put("classname", table.getClassName2Lower());
+        velocityContext.put("lclassname", table.getClassName2AllLower());
         velocityContext.put("moduleName", GenerateUtils.getModuleName(packageName));
         velocityContext.put("columns", table.getColumnInfoList());
         velocityContext.put("package", packageName);
@@ -96,11 +100,8 @@ public class GenerateUtils {
         // 大写类名
         String className = table.getClassName();
         String javaPath = PROJECT_PATH + "/" + moduleName + "/";
-
-        if (StringUtils.isNotEmpty(classname)) {
-            javaPath += classname.replace(".", "/") + "/";
-        }
-        return javaPath + className + template.substring(0, template.lastIndexOf("."));
+        template = template.replace("templates/vm", "");
+        return javaPath + template.substring(0, template.lastIndexOf("/") + 1) + className + template.substring(template.lastIndexOf("/") + 1, template.lastIndexOf("."));
     }
 
     /**

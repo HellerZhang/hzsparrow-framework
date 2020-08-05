@@ -20,6 +20,11 @@ public class TableInfo {
     private String className2Lower;
 
     /**
+     * 全小写类名
+     */
+    private String className2AllLower;
+
+    /**
      * 表注释
      */
     private String tableComment;
@@ -34,7 +39,7 @@ public class TableInfo {
      */
     private Date updateTime;
 
-    private String primaryKey;
+    private ColumnInfo primaryKey;
 
     private List<ColumnInfo> columnInfoList;
 
@@ -60,6 +65,14 @@ public class TableInfo {
 
     public void setClassName2Lower(String className2Lower) {
         this.className2Lower = className2Lower;
+    }
+
+    public String getClassName2AllLower() {
+        return className2AllLower;
+    }
+
+    public void setClassName2AllLower(String className2AllLower) {
+        this.className2AllLower = className2AllLower;
     }
 
     public String getTableComment() {
@@ -94,11 +107,15 @@ public class TableInfo {
         this.columnInfoList = columnInfoList;
     }
 
-    public String getPrimaryKey() {
+    public ColumnInfo getPrimaryKey() {
         return primaryKey;
     }
 
-    public void setPrimaryKey(String primaryKey) {
+    public void setPrimaryKey(ColumnInfo primaryKey) {
         this.primaryKey = primaryKey;
+    }
+
+    public ColumnInfo getLastColumn() {
+        return getColumnInfoList().get(0);
     }
 }

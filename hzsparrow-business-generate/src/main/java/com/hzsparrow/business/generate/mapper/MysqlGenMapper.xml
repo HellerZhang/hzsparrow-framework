@@ -34,7 +34,7 @@
 
     <select id="selectTableByName" parameterType="String" resultMap="TableInfoResult">
         <include refid="selectGenVo"/>
-        where table_comment <![CDATA[ <> ]]> '' and table_schema = (select database())
+        where table_schema = (select database())
         and table_name = #{tableName}
     </select>
 

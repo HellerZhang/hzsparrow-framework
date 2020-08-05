@@ -13,7 +13,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 logging:
   level:
-    com.hzsparrow.boot.base.mapper: debug
+    com.hzsparrow.business.generate.mapper: debug
 mybatis:
   mapper-locations: classpath:com.hzsparrow.**.mapper/*.xml
 hzsparrow:

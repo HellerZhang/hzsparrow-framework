@@ -1,0 +1,17 @@
+package ${package}.mapper;
+
+import ${package}.entity.${className}Entity;
+import java.util.List;
+
+public interface ${className}Mapper {
+
+    int deleteByPrimaryKey(${primaryKey.fieldType} ${primaryKey.fieldName});
+
+    int insert(${className}Entity entity);
+
+    ${className}Entity selectByPrimaryKey(${primaryKey.fieldType} ${primaryKey.fieldName});
+
+    List<${className}Entity> selectAll();
+
+    int updateByPrimaryKey(${className}Entity entity);
+}

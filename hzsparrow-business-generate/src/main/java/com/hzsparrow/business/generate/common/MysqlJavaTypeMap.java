@@ -1,5 +1,6 @@
 package com.hzsparrow.business.generate.common;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MysqlJavaTypeMap implements GenerateTypeMap {
@@ -9,6 +10,8 @@ public class MysqlJavaTypeMap implements GenerateTypeMap {
     private Map<String, String> jdbcTypeMap;
 
     public MysqlJavaTypeMap() {
+        map = new HashMap<>();
+        jdbcTypeMap = new HashMap<>();
         map.put("bigint", "Long");
         map.put("tinyblob", "byte[]");
         map.put("blob", "byte[]");
