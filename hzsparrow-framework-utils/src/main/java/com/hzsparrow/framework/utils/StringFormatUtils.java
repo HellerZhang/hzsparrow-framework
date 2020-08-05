@@ -6,7 +6,7 @@ package com.hzsparrow.framework.utils;
 
 /**
  * 字符串格式转换工具
- * 
+ *
  * @author Heller.Zhang
  * @since 2018年8月17日 下午2:52:47
  */
@@ -15,7 +15,7 @@ public class StringFormatUtils {
     /**
      * 将驼峰式命名的字符串转换为下划线大写方式。如果转换前的驼峰式命名的字符串为空，则返回空字符串。</br>
      * 例如：HelloWorld->HELLO_WORLD
-     * 
+     *
      * @param name 转换前的驼峰式命名的字符串
      * @return 转换后下划线大写方式命名的字符串
      */
@@ -41,11 +41,26 @@ public class StringFormatUtils {
     /**
      * 将下划线大写方式命名的字符串转换为驼峰式。如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。</br>
      * 例如：HELLO_WORLD->HelloWorld
-     * 
+     *
      * @param name 转换前的下划线大写方式命名的字符串
      * @return 转换后的驼峰式命名的字符串
      */
     public static String camelName(String name) {
+        return camelName(name, false);
+    }
+
+    /**
+     * 将下划线大写方式命名的字符串转换为驼峰式。如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。</br>
+     * 例如：HELLO_WORLD->helloWorld
+     *
+     * @param name 转换前的下划线大写方式命名的字符串
+     * @return 转换后的驼峰式命名的字符串
+     */
+    public static String camelName4Lower(String name) {
+        return camelName(name, true);
+    }
+
+    private static String camelName(String name, boolean firstLower) {
         StringBuilder result = new StringBuilder();
         // 快速检查
         if (name == null || name.isEmpty()) {
@@ -53,29 +68,35 @@ public class StringFormatUtils {
             return "";
         } else if (!name.contains("_")) {
             // 不含下划线，仅将首字母小写
-            return name.substring(0, 1).toLowerCase() + name.substring(1);
+            if (firstLower) {
+                return name.substring(0, 1).toLowerCase() + name.substring(1);
+            } else {
+                return name.substring(0, 1).toUpperCase() + name.substring(1);
+            }
         }
         // 用下划线将原始字符串分割
         String camels[] = name.split("_");
-        for (String camel : camels) {
+        for (int index = 0; index < camels.length; index++) {
+            String camel = camels[index];
             // 跳过原始字符串中开头、结尾的下换线或双重下划线
             if (camel.isEmpty()) {
                 continue;
             }
             // 处理真正的驼峰片段
-            if (result.length() == 0) {
-                // 第一个驼峰片段，全部字母都小写
-                result.append(camel.toLowerCase());
+
+            // 判断第一个驼峰片段是否需要首字母大写，其他片段均首字母大写
+            if (firstLower && index == 0) {
+                result.append(camel.substring(0, 1).toLowerCase());
             } else {
-                // 其他的驼峰片段，首字母大写
                 result.append(camel.substring(0, 1).toUpperCase());
-                result.append(camel.substring(1).toLowerCase());
             }
+            result.append(camel.substring(1).toLowerCase());
+
         }
         return result.toString();
     }
-    
+
     public static void main(String[] args) {
-        System.out.println(StringFormatUtils.camelName("RequestId"));
+        System.out.println(StringFormatUtils.camelName4Lower("RequestId"));
     }
 }
