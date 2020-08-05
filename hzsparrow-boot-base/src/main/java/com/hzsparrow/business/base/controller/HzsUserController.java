@@ -3,13 +3,20 @@ package com.hzsparrow.business.base.controller;
 import com.hzsparrow.business.base.component.BaseController;
 import com.hzsparrow.business.base.entity.HzsUser;
 import com.hzsparrow.business.base.service.HzsUserService;
+import com.hzsparrow.business.base.validgroups.Create;
+import com.hzsparrow.business.base.validgroups.Edit;
 import com.hzsparrow.business.base.vo.HzsUserPageVO;
 import com.hzsparrow.framework.model.page.PageQO;
 import com.hzsparrow.framework.model.page.PageResultDTO;
 import com.hzsparrow.framework.model.result.ResultDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.groups.Default;
 
 @RestController
 @RequestMapping("/hzs/user")
@@ -25,7 +32,7 @@ public class HzsUserController extends BaseController {
      * @return
      */
     @RequestMapping("/save")
-    public ResultDTO<Object> save(HzsUser entity) {
+    public ResultDTO<Object> save(@Validated({Create.class, Default.class}) HzsUser entity) {
         return hzsUserService.save(entity, getSessionUser());
     }
 
@@ -36,7 +43,7 @@ public class HzsUserController extends BaseController {
      * @return
      */
     @RequestMapping("/edit")
-    public ResultDTO<Object> edit(HzsUser entity) {
+    public ResultDTO<Object> edit(@Validated({Edit.class, Default.class}) HzsUser entity) {
         return hzsUserService.edit(entity, getSessionUser());
     }
 

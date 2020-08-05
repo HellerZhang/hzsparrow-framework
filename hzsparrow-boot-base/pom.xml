@@ -124,10 +124,10 @@
                     <include>*</include>
                 </includes>
                 <!-- 打包发布时使用，单独打包时注释即可 -->
-                <excludes>
-                    <exclude>application.yml</exclude>
-                    <exclude>mybatis-generator/*</exclude>
-                </excludes>
+<!--                <excludes>-->
+<!--                    <exclude>application.yml</exclude>-->
+<!--                    <exclude>mybatis-generator/*</exclude>-->
+<!--                </excludes>-->
             </resource>
         </resources>
         <finalName>hazparrow-base</finalName>
@@ -136,15 +136,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <!-- 打包发布时排除依赖jar包，单独部署时，将配置注释掉即可。 -->
-                <configuration>
-                    <includes>
-                        <include>
-                            <groupId>non-exists</groupId>
-                            <artifactId>non-exists</artifactId>
-                        </include>
-                    </includes>
-                    <skip>true</skip>
-                </configuration>
+<!--                <configuration>-->
+<!--                    <includes>-->
+<!--                        <include>-->
+<!--                            <groupId>non-exists</groupId>-->
+<!--                            <artifactId>non-exists</artifactId>-->
+<!--                        </include>-->
+<!--                    </includes>-->
+<!--                    <skip>true</skip>-->
+<!--                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>

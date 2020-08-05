@@ -2,7 +2,11 @@ package com.hzsparrow.business.base.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hzsparrow.business.base.validgroups.Create;
+import com.hzsparrow.business.base.validgroups.Edit;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,6 +17,7 @@ public class HzsUser implements Serializable {
      *
      * @mbg.generated
      */
+    @NotBlank(groups = Edit.class, message = "用户ID不可为空！")
     private String hsuId;
 
     /**
@@ -21,6 +26,8 @@ public class HzsUser implements Serializable {
      *
      * @mbg.generated
      */
+    @NotBlank(message = "用户姓名不可为空！")
+    @Length(max = 20, message = "用户姓名过长，不应超过20个字符！")
     private String hsuName;
 
     /**
@@ -29,6 +36,8 @@ public class HzsUser implements Serializable {
      *
      * @mbg.generated
      */
+    @NotBlank(message = "用户账号不可为空！")
+    @Length(max = 20, message = "用户账号过长，不应超过20个字符！")
     private String hsuAccount;
 
     /**
@@ -38,6 +47,8 @@ public class HzsUser implements Serializable {
      * @mbg.generated
      */
     @JsonIgnore
+    @NotBlank(groups = Create.class, message = "用户密码不可为空！")
+    @Length(max = 20, message = "用户密码过长，不应超过20个字符！")
     private String hsuPassword;
 
     /**
@@ -46,6 +57,7 @@ public class HzsUser implements Serializable {
      *
      * @mbg.generated
      */
+    @NotBlank(message = "用户角色ID不可为空！")
     private String hsrId;
 
     /**
