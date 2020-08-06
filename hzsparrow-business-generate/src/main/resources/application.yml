@@ -4,10 +4,10 @@ server:
     context-path: /
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/hzsparrow-base?serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://192.168.20.227:3366/zgxsj?serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
+    password: sjt-88606370
     druid:
       initial-size: 2
     type: com.alibaba.druid.pool.DruidDataSource

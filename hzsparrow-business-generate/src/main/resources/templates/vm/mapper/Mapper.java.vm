@@ -1,3 +1,4 @@
+#set($uuid=$columns.get(1))
 package ${package}.mapper;
 
 import ${package}.entity.${className}Entity;
@@ -5,11 +6,11 @@ import java.util.List;
 
 public interface ${className}Mapper {
 
-    int deleteByPrimaryKey(${primaryKey.fieldType} ${primaryKey.fieldName});
+    int deleteByPrimaryKey(${uuid.fieldType} ${uuid.fieldName});
 
     int insert(${className}Entity entity);
 
-    ${className}Entity selectByPrimaryKey(${primaryKey.fieldType} ${primaryKey.fieldName});
+    ${className}Entity selectByPrimaryKey(${uuid.fieldType} ${uuid.fieldName});
 
     List<${className}Entity> selectAll();
 

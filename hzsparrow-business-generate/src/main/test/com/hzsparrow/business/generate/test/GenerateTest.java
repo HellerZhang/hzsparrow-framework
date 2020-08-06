@@ -18,9 +18,9 @@ public class GenerateTest {
     @Test
     public void generate() {
         GenConfig config = new GenConfig();
-        config.setPackageName("com.hzsparrow.business.generate");
+        config.setPackageName("com.tond.zgxsj");
         config.setAuthor("HellerZhang");
-        generateService.generateCode("hzs_user", config);
+        generateService.generateCode("zgx_info", config);
     }
 
 }

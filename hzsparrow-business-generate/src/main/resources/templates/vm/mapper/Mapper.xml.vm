@@ -1,3 +1,4 @@
+#set($uuid=$columns.get(1))
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${package}.mapper.${className}Mapper">
@@ -12,7 +13,7 @@
     </resultMap>
     <delete id="deleteByPrimaryKey">
         delete from ${tableName}
-        where ${primaryKey.columnName} = #{${primaryKey.fieldName},jdbcType=${primaryKey.jdbcType}}
+        where ${uuid.columnName} = #{${uuid.fieldName},jdbcType=${uuid.jdbcType}}
     </delete>
     <insert id="insert" parameterType="${package}.entity.${className}Entity">
         insert into ${tableName} (
@@ -32,13 +33,13 @@
         update ${tableName}
         set
 #foreach($column in $columns)
-#if(!$foreach.first)
-            ${column.columnName} = #{${column.fieldName},jdbcType=${column.jdbcType}}#if($foreach.last)#else,
+#if($foreach.index>1 && ${column.columnName} != "crt_id" && ${column.columnName} != "crt_name" && ${column.columnName} != "crt_time")
+#if($foreach.index>2),
 #end
-#end
+            ${column.columnName} = #{${column.fieldName},jdbcType=${column.jdbcType}}#end
 #end
 
-        where ${primaryKey.columnName} = #{${primaryKey.fieldName},jdbcType=${primaryKey.jdbcType}}
+        where ${uuid.columnName} = #{${uuid.fieldName},jdbcType=${uuid.jdbcType}}
     </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
@@ -48,7 +49,7 @@
 #end
 
         from ${tableName}
-        where ${primaryKey.columnName} = #{${primaryKey.fieldName},jdbcType=${primaryKey.jdbcType}}
+        where ${uuid.columnName} = #{${uuid.fieldName},jdbcType=${uuid.jdbcType}}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select
