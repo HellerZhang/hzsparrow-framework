@@ -76,7 +76,7 @@ public class DefaultFastDFSFileUploader implements FileUploader {
     public FileInfoModel upload(File file, String destFolder) {
         FileInfoModel uploadDTO = new FileInfoModel();
         try {
-            String fileExt = file.getName().substring(file.getName().indexOf('.'));
+            String fileExt = file.getName().substring(file.getName().lastIndexOf('.'));
             String fileName = randomFileNameCreator.creatRandomFileName() + fileExt;
             byte[] sources = FileUtils.readFileToByteArray(file);
 
@@ -105,7 +105,7 @@ public class DefaultFastDFSFileUploader implements FileUploader {
 
     private FileInfoModel uploadOnece(MultipartFile file, String destFolder) {
         FileInfoModel uploadDTO = new FileInfoModel();
-        String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().indexOf('.'));
+        String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
         String fileName = randomFileNameCreator.creatRandomFileName() + fileExt;
         String destFile;
         if (StringUtils.isBlank(destFolder)) {

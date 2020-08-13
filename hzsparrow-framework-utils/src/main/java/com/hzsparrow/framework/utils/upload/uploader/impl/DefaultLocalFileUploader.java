@@ -120,7 +120,7 @@ public class DefaultLocalFileUploader implements FileUploader {
     @Override
     public FileInfoModel upload(File file, String destFolder) {
         FileInfoModel uploadDTO = new FileInfoModel();
-        String fileExt = file.getName().substring(file.getName().indexOf('.'));
+        String fileExt = file.getName().substring(file.getName().lastIndexOf('.'));
         String fileName = randomFileNameCreator.creatRandomFileName() + fileExt;
         String destFile;
         if (StringUtils.isBlank(destFolder)) {
@@ -169,7 +169,7 @@ public class DefaultLocalFileUploader implements FileUploader {
      */
     private FileInfoModel uploadOnece(MultipartFile file, String destFolder) {
         FileInfoModel uploadDTO = new FileInfoModel();
-        String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().indexOf('.'));
+        String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
         String fileName = randomFileNameCreator.creatRandomFileName() + fileExt;
         String destFile;
         if (StringUtils.isBlank(destFolder)) {

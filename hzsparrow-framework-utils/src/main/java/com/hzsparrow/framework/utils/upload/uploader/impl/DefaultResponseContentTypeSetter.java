@@ -17,7 +17,7 @@ public class DefaultResponseContentTypeSetter implements ResponseContentTypeSett
      */
     @Override
     public void setContentType(HttpServletResponse response, String fileName) {
-        String fileSuffix = fileName.substring(fileName.indexOf('.')).toLowerCase();
+        String fileSuffix = fileName.substring(fileName.lastIndexOf('.')).toLowerCase();
         switch (fileSuffix) {
             case ".xml":
                 response.setContentType("text/xml");
