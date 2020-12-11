@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -178,5 +179,17 @@ public class ExcelOptionsUtils {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 获取已存在文件的WorkBook对象
+     *
+     * @param path
+     * @return
+     * @throws IOException
+     */
+    public static Workbook getWorkbook(String path) throws IOException {
+        Workbook workbook = WorkbookFactory.create(new File(path));
+        return workbook;
     }
 }
