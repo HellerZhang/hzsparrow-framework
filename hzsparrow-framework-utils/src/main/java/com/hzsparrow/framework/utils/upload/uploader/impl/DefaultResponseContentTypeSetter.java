@@ -43,7 +43,7 @@ public class DefaultResponseContentTypeSetter implements ResponseContentTypeSett
                 response.setContentType("application/pdf");
                 break;
             default:
-                response.setContentType("text/plain");
+                response.setContentType("multipart/form-data");
                 break;
         }
     }

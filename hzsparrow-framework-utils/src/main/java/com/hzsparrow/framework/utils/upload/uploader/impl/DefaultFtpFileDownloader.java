@@ -38,8 +38,9 @@ public class DefaultFtpFileDownloader implements FileDownloader {
             resp.setCharacterEncoding("UTF-8");
             responseContentTypeSetter.setContentType(resp, fileOldName);
 
-            resp.setHeader("Content-Disposition", "attachment;filename="
-                    .concat(fileNameConverter.getConvertedFileName(req, fileOldName)));
+            resp.setHeader("Content-Disposition", "attachment;filename=\""
+                    .concat(fileNameConverter.getConvertedFileName(req, fileOldName)).concat("\""));
+            resp.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
             resp.setHeader("Connection", "close");
             int len = 0;
             byte[] buffer = new byte[1024 * 1024];
