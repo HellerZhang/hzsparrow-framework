@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.hzsparrow.framework</groupId>
+    <artifactId>hzsparrow-framework-excel</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <description>
+        1、基于POI实现excel文档的合并、拆分、工作表的合并、使用公式汇总某列数据等功能。2020-09-01
+    </description>
+
+    <properties>
+        <poi.version>4.1.2</poi.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

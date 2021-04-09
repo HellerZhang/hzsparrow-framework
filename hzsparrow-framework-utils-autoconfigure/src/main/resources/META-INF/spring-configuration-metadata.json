@@ -1,0 +1,249 @@
+{
+  "groups": [
+    {
+      "name": "hzsparrow.aliyunsms",
+      "type": "com.hzsparrow.framework.utils.property.AliyunSmsProperty",
+      "sourceType": "com.hzsparrow.framework.utils.property.AliyunSmsProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload",
+      "type": "com.hzsparrow.framework.utils.property.HzSparrowFileUploadProperty",
+      "sourceType": "com.hzsparrow.framework.utils.property.HzSparrowFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fu",
+      "type": "com.hzsparrow.framework.utils.property.FileUploadProperty",
+      "sourceType": "com.hzsparrow.framework.utils.property.FileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fu.ftp",
+      "type": "com.hzsparrow.framework.utils.property.FtpProperty",
+      "sourceType": "com.hzsparrow.framework.utils.property.FtpProperty"
+    }
+  ],
+  "properties": [
+    {
+      "name": "hzsparrow.aliyunsms.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.hzsparrow.framework.utils.property.AliyunSmsProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "hzsparrow.aliyunsms.access-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.hzsparrow.framework.utils.property.AliyunSmsProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "hzsparrow.fileupload.component",
+      "type": "com.hzsparrow.framework.utils.upload.model.DefaultFileUploadComponentProperty",
+      "description": "文件上传组件",
+      "sourceType": "com.hzsparrow.framework.utils.property.HzSparrowFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.ftp",
+      "type": "com.hzsparrow.framework.utils.upload.model.DefaultFtpFileUploadProperty",
+      "description": "ftp文件上传参数",
+      "sourceType": "com.hzsparrow.framework.utils.property.HzSparrowFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.local",
+      "type": "com.hzsparrow.framework.utils.upload.model.DefaultLocalFileUploadProperty",
+      "description": "本地文件上传参数",
+      "sourceType": "com.hzsparrow.framework.utils.property.HzSparrowFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.serverType",
+      "type": "java.lang.String",
+      "description": "暂时支持local和ftp",
+      "sourceType": "com.hzsparrow.framework.utils.property.HzSparrowFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.validator",
+      "type": "com.hzsparrow.framework.utils.upload.model.DefaultFileValidatorProperty",
+      "description": "文件校验器",
+      "sourceType": "com.hzsparrow.framework.utils.property.HzSparrowFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.component.randomFileNameCreator",
+      "type": "java.lang.String",
+      "description": "随机文件名生成器",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileUploadComponentProperty",
+      "defaultValue": "com.hzsparrow.framework.utils.upload.uploader.impl.DefaultRandomFileNameCreator"
+    },
+    {
+      "name": "hzsparrow.fileupload.component.responseContentTypeSetter",
+      "type": "java.lang.String",
+      "description": "响应内容类型设置器",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileUploadComponentProperty",
+      "defaultType": "com.hzsparrow.framework.utils.upload.uploader.impl.DefaultResponseContentTypeSetter"
+    },
+    {
+      "name": "hzsparrow.fileupload.component.fileNameConverter",
+      "type": "java.lang.String",
+      "description": "下载文件名适配工具",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileUploadComponentProperty",
+      "defaultType": "com.hzsparrow.framework.utils.upload.uploader.impl.DefaultFileNameConverter"
+    },
+    {
+      "name": "hzsparrow.fileupload.component.fileSizeValidator",
+      "type": "java.lang.String",
+      "description": "文件大小校验器",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileUploadComponentProperty",
+      "defaultType": "com.hzsparrow.framework.utils.upload.valid.impl.DefaultFileSizeValidator"
+    },
+    {
+      "name": "hzsparrow.fileupload.component.fileTypeValidator",
+      "type": "java.lang.String",
+      "description": "文件类型校验器",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileUploadComponentProperty",
+      "defaultType": "com.hzsparrow.framework.utils.upload.valid.impl.DefaultFileTypeValidator"
+    },
+    {
+      "name": "hzsparrow.fileupload.component.fileUploadValidator",
+      "type": "java.lang.String",
+      "description": "文件上传类型校验器",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileUploadComponentProperty",
+      "defaultType": "com.hzsparrow.framework.utils.upload.valid.impl.DefaultFileUploadValidator"
+    },
+    {
+      "name": "hzsparrow.fileupload.component.fileOtherValidator",
+      "type": "java.lang.String",
+      "description": "文件其他校验器,多个以,隔开",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileUploadComponentProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.validator.isEnableSizeValid",
+      "type": "java.lang.Boolean",
+      "description": "是否启用文件大小校验",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileValidatorProperty",
+      "defaultValue": true
+    },
+    {
+      "name": "hzsparrow.fileupload.validator.maxFileSize",
+      "type": "java.lang.Long",
+      "description": "最大文件大小(默认1G),单位Byte",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileValidatorProperty",
+      "defaultValue": 1073741824
+    },
+    {
+      "name": "hzsparrow.fileupload.validator.isEnableTypeValid",
+      "type": "java.lang.Boolean",
+      "description": "是否启用文件类型校验",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileValidatorProperty",
+      "defaultValue": true
+    },
+    {
+      "name": "hzsparrow.fileupload.validator.isEnableDefaultType",
+      "type": "java.lang.Boolean",
+      "description": "是否启用默认校验文件类型",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileValidatorProperty",
+      "defaultValue": true
+    },
+    {
+      "name": "hzsparrow.fileupload.validator.allowedSuffix",
+      "type": "java.lang.String",
+      "description": "自定义文件校验类型,多个以,隔开",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFileValidatorProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.local.rootPath",
+      "type": "java.lang.String",
+      "description": "根路径",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultLocalFileUploadProperty",
+      "defaultValue": "d:\\hzsparrow\\upload"
+    },
+    {
+      "name": "hzsparrow.fileupload.local.secondPath",
+      "type": "java.lang.String",
+      "description": "二级路径",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultLocalFileUploadProperty",
+      "defaultValue": "upload"
+    },
+    {
+      "name": "hzsparrow.fileupload.ftp.ftpHost",
+      "type": "java.lang.String",
+      "description": "ftp地址",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFtpFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.ftp.ftpPort",
+      "type": "java.lang.Integer",
+      "description": "ftp端口",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFtpFileUploadProperty",
+      "defaultValue": 21
+    },
+    {
+      "name": "hzsparrow.fileupload.ftp.ftpUserName",
+      "type": "java.lang.String",
+      "description": "ftp账号",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFtpFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.ftp.ftpPassword",
+      "type": "java.lang.String",
+      "description": "ftp密码",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFtpFileUploadProperty"
+    },
+    {
+      "name": "hzsparrow.fileupload.ftp.secondPath",
+      "type": "java.lang.String",
+      "description": "二级路径",
+      "sourceType": "com.hzsparrow.framework.utils.upload.model.DefaultFtpFileUploadProperty",
+      "defaultValue": "upload"
+    },
+    {
+      "name": "hzsparrow.fu.fileServerType",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hzsparrow.framework.utils.property.FileUploadProperty",
+      "defaultValue": 1
+    },
+    {
+      "name": "hzsparrow.fu.ftp.ftpHost",
+      "type": "java.lang.String",
+      "description": "ftp地址",
+      "sourceType": "com.hzsparrow.framework.utils.property.FtpProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "hzsparrow.fu.ftp.ftpPassword",
+      "type": "java.lang.String",
+      "description": "ftp密码",
+      "sourceType": "com.hzsparrow.framework.utils.property.FtpProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "hzsparrow.fu.ftp.ftpPort",
+      "type": "java.lang.Integer",
+      "description": "ftp端口",
+      "sourceType": "com.hzsparrow.framework.utils.property.FtpProperty",
+      "defaultValue": 21
+    },
+    {
+      "name": "hzsparrow.fu.ftp.ftpUserName",
+      "type": "java.lang.String",
+      "description": "ftp账号",
+      "sourceType": "com.hzsparrow.framework.utils.property.FtpProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "hzsparrow.fu.maxFileSize",
+      "type": "java.lang.Long",
+      "sourceType": "com.hzsparrow.framework.utils.property.FileUploadProperty",
+      "defaultValue": 1000000000
+    },
+    {
+      "name": "hzsparrow.fu.rootPath",
+      "type": "java.lang.String",
+      "sourceType": "com.hzsparrow.framework.utils.property.FileUploadProperty",
+      "defaultValue": "d:\\hzsparrow\\upload"
+    },
+    {
+      "name": "hzsparrow.fu.secondPath",
+      "type": "java.lang.String",
+      "sourceType": "com.hzsparrow.framework.utils.property.FileUploadProperty",
+      "defaultValue": "upload"
+    }
+  ],
+  "hints": []
+}
