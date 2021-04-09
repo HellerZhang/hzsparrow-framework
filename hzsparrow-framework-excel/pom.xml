@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hzsparrow.framework</groupId>
     <artifactId>hzsparrow-framework-excel</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <description>
         1、基于POI实现excel文档的合并、拆分、工作表的合并、使用公式汇总某列数据等功能。2020-09-01
     </description>

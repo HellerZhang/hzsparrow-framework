@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.hzsparrow.framework</groupId>
         <artifactId>hzsparrow-framework-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.hzsparrow.framework</groupId>
     <artifactId>hzsparrow-framework-utils-autoconfigure</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>hzsparrow-framework-utils-autoconfigure</name>
     <description>hzsparrow-framework-utils-autoconfigure for Spring Boot</description>
 
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.hzsparrow.framework</groupId>
             <artifactId>hzsparrow-framework-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

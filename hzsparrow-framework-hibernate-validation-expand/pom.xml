@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.hzsparrow.framework</groupId>
         <artifactId>hzsparrow-framework-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.hzsparrow.framework</groupId>
     <artifactId>hzsparrow-framework-hibernate-validation-expand</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <description>hibernate-validator的校验扩展包，基于hbiernate-validator 6.0.17.Final版本</description>
     <properties>
         <java.version>1.8</java.version>

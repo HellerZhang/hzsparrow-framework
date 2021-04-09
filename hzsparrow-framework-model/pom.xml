@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.hzsparrow.framework</groupId>
         <artifactId>hzsparrow-framework-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.hzsparrow.framework</groupId>
     <artifactId>hzsparrow-framework-model</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>hzsparrow-framework-model</name>
     <description>hzsparrow-framework-model for Spring Boot</description>
 
