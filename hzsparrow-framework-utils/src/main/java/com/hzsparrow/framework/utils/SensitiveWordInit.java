@@ -10,11 +10,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 /**
- * @Description: 初始化敏感词库，将敏感词加入到HashMap中，构建DFA算法模型
- * @Project：test
- * @Author : chenming
- * @Date ： 2014年4月20日 下午2:27:06
- * @version 1.0
+ * 初始化敏感词库，将敏感词加入到HashMap中，构建DFA算法模型
  */
 public class SensitiveWordInit {
 
@@ -31,10 +27,10 @@ public class SensitiveWordInit {
 
     /**
      * 通过敏感词字符串和分隔符初始化敏感词库
-     * 
+     *
      * @param keyWordStr 敏感词字符串
-     * @param separator 分隔符
-     * @return
+     * @param separator  分隔符
+     * @return 敏感词map集合
      * @author Heller.Zhang
      * @since 2019年4月30日 上午11:13:24
      */
@@ -54,9 +50,9 @@ public class SensitiveWordInit {
 
     /**
      * 通过读取文件初始化敏感词库，每行一个敏感词
-     * 
-     * @param filePath
-     * @return
+     *
+     * @param filePath 文件路径
+     * @return 敏感词map集合
      * @author Heller.Zhang
      * @since 2019年4月30日 上午11:07:43
      */
@@ -79,13 +75,10 @@ public class SensitiveWordInit {
      * 中 = { isEnd = 0 国 = {<br>
      * isEnd = 1 人 = {isEnd = 0 民 = {isEnd = 1} } 男 = { isEnd = 0 人 = { isEnd = 1 } } } } 五 = {
      * isEnd = 0 星 = { isEnd = 0 红 = { isEnd = 0 旗 = { isEnd = 1 } } } }
-     * 
-     * @author chenming
-     * @date 2014年4月20日 下午3:04:20
+     *
      * @param keyWordSet 敏感词库
-     * @version 1.0
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private void addSensitiveWordToHashMap(Set<String> keyWordSet) {
         sensitiveWordMap = new HashMap(keyWordSet.size()); //初始化敏感词容器，减少扩容操作
         String key = null;
@@ -118,12 +111,10 @@ public class SensitiveWordInit {
 
     /**
      * 读取敏感词库中的内容，将内容添加到set集合中
-     * 
-     * @author chenming
-     * @date 2014年4月20日 下午2:31:18
-     * @return
-     * @version 1.0
-     * @throws Exception
+     *
+     * @param filePath 敏感词库文件路径
+     * @return 敏感词set集合
+     * @throws Exception 文件不存在时抛出异常
      */
     @SuppressWarnings("resource")
     private Set<String> readSensitiveWordFile(String filePath) throws Exception {

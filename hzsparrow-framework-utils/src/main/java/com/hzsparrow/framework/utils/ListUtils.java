@@ -6,19 +6,20 @@ import java.util.stream.Collectors;
 
 /**
  * List工具类
- * 
- * @author Mia.Guo
+ *
+ * @author HellerZhang
  * @since 2019年5月20日 下午6:46:41
  */
 public class ListUtils {
 
     /**
      * 取差集 取list1有，list2中没有的值
-     * 
-     * @param list1
-     * @param list2
-     * @return
-     * @author Mia.Guo
+     *
+     * @param list1 list1
+     * @param list2 list2
+     * @param <T>   类型
+     * @return 差集
+     * @author HellerZhang
      * @since 2019年5月21日 上午8:53:07
      */
     public static <T> List<T> differenceSet(List<T> list1, List<T> list2) {
@@ -48,10 +49,11 @@ public class ListUtils {
 
     /**
      * 取两个数组的交集
-     * 
-     * @param list1
-     * @param list2
-     * @return
+     *
+     * @param list1 list1
+     * @param list2 list2
+     * @param <T>   类型
+     * @return 交集
      * @author Heller.Zhang
      * @since 2019年6月18日 下午7:37:45
      */
@@ -77,11 +79,12 @@ public class ListUtils {
 
     /**
      * 通过Stream取list<strong>交集</strong>
-     * 
-     * @param list1
-     * @param list2
-     * @return
-     * @author Einstein.Liu
+     *
+     * @param list1 list1
+     * @param list2 list2
+     * @param <T>   类型
+     * @return 交集
+     * @author HellerZhang
      * @since 2019年7月5日 下午5:43:01
      */
     public static <T> List<T> intersectionStream(List<T> list1, List<T> list2) {
@@ -90,11 +93,12 @@ public class ListUtils {
 
     /**
      * 通过Stream取list<strong>差集</strong>
-     * 
-     * @param list1
-     * @param list2
-     * @return
-     * @author Einstein.Liu
+     *
+     * @param list1 list1
+     * @param list2 list2
+     * @param <T>   类型
+     * @return 差集
+     * @author HellerZhang
      * @since 2019年7月5日 下午5:51:14
      */
     public static <T> List<T> reduce(List<T> list1, List<T> list2) {
@@ -103,11 +107,12 @@ public class ListUtils {
 
     /**
      * 通过Stream取list<strong>并集</strong>
-     * 
-     * @param list1
-     * @param list2
-     * @return
-     * @author Einstein.Liu
+     *
+     * @param list1 list1
+     * @param list2 list2
+     * @param <T>   类型
+     * @return 并集
+     * @author HellerZhang
      * @since 2019年7月5日 下午5:52:50
      */
     public static <T> List<T> listAll(List<T> list1, List<T> list2) {
@@ -117,11 +122,12 @@ public class ListUtils {
 
     /**
      * 通过Stream取list<strong>去重并集</strong>
-     * 
-     * @param list1
-     * @param list2
-     * @return
-     * @author Einstein.Liu
+     *
+     * @param list1 list1
+     * @param list2 list2
+     * @param <T>   类型
+     * @return 去重并集
+     * @author HellerZhang
      * @since 2019年7月5日 下午5:53:09
      */
     public static <T> List<T> listAllDistinct(List<T> list1, List<T> list2) {

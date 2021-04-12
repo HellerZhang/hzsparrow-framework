@@ -7,7 +7,7 @@ package com.hzsparrow.framework.utils.ftp;
 /**
  * ServiceException
  * 
- * @author Jades.He
+ * @author HellerZhang
  * @since 2017.07.17
  */
 public class FTPException extends RuntimeException {

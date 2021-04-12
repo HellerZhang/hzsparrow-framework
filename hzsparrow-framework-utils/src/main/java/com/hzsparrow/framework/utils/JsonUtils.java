@@ -20,8 +20,8 @@ public class JsonUtils {
     /**
      * 将对象序列化为Json字符串
      * 
-     * @param value
-     * @return
+     * @param value 对象
+     * @return json字符串
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:13:14
      */
@@ -41,8 +41,8 @@ public class JsonUtils {
     /**
      * 解析Json字符串到Map中
      * 
-     * @param value
-     * @return
+     * @param value Json字符串
+     * @return map对象
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:13:43
      */
@@ -62,12 +62,10 @@ public class JsonUtils {
 
     /**
      * 解析Json字符串为指定的对象类型
-     * 
-     * @param value
-     * @param t
-     * @return
-     * @author Heller.Zhang
-     * @since 2019年5月7日 上午9:14:07
+     * @param value Json字符串
+     * @param t 指定的对象类型
+     * @param <T> 指定的对象类型
+     * @return 对象
      */
     public static <T> T readValueCustom(String value, Class<T> t) {
         T map = null;

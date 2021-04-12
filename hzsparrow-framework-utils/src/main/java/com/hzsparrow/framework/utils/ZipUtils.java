@@ -55,9 +55,9 @@ public class ZipUtils {
      * @param comment 压缩包注释
      * @throws FileNotFoundException
      * @throws IOException           void
-     * @Title: zip
-     * @Description: 对文件夹或者文件进行压缩
-     * @author Dong
+     *  zip
+     *  对文件夹或者文件进行压缩
+     * @author HellerZhang
      */
     public String zip(String src, String archive, String comment, String zipEncoding) throws FileNotFoundException, IOException {
 
@@ -102,11 +102,10 @@ public class ZipUtils {
      * @param bo
      * @param srcFile
      * @param prefixDir
-     * @throws IOException
      * @throws FileNotFoundException void
-     * @Title: writeRecursive
-     * @Description: 递归压缩
-     * @author Dong
+     *  writeRecursive
+     *  递归压缩
+     * @author HellerZhang
      */
     private void writeRecursive(ZipOutputStream zos, BufferedOutputStream bo, File srcFile, String prefixDir)
             throws IOException, FileNotFoundException {
@@ -160,13 +159,9 @@ public class ZipUtils {
      *
      * @param archive       压缩包路径
      * @param decompressDir 解压路径
-     * @return
-     * @throws IOException
-     * @throws FileNotFoundException
-     * @throws ZipException          List<String>
-     * @Title: unZip
-     * @Description: 解压文件
-     * @author Dong
+     * @return 解压的文件列表
+     *  解压文件
+     * @author HellerZhang
      */
     public List<ZipModel> unZip(String archive, String decompressDir, String unZipPath)
             throws IOException, FileNotFoundException, ZipException {

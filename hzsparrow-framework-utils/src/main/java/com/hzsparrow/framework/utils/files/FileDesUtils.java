@@ -44,9 +44,9 @@ public class FileDesUtils {
     }
 
     /**
-     * @Title: encrypt
-     * @Description: 使用指定的key，将源文件加密后，写入目标文件
-     * @author Dong
+     * encrypt
+     *  使用指定的key，将源文件加密后，写入目标文件
+     * @author HellerZhang
      * @param file 源文件
      * @param strKey 密钥
      * @param destFile 目标文件
@@ -73,9 +73,9 @@ public class FileDesUtils {
     }
 
     /**
-     * @Title: decrypt
-     * @Description: 使用指定的key，将源文件解密后，写入目标文件
-     * @author Dong
+     *  decrypt
+     *  使用指定的key，将源文件解密后，写入目标文件
+     * @author HellerZhang
      * @param strKey
      * @param file
      * @param dest

@@ -8,11 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @Description: 敏感词过滤
- * @Project：test
- * @Author : chenming
- * @Date ： 2014年4月20日 下午4:17:15
- * @version 1.0
+ * 敏感词过滤
  */
 public class SensitivewordFilterUtils {
 
@@ -25,9 +21,9 @@ public class SensitivewordFilterUtils {
 
     /**
      * 字符串形式初始化敏感词库
-     * 
-     * @param keyWordStr
-     * @param separator
+     *
+     * @param keyWordStr 敏感词字符串集
+     * @param separator  切分字符
      */
     public SensitivewordFilterUtils(String keyWordStr, String separator) {
         sensitiveWordMap = new SensitiveWordInit().initKeyWord(keyWordStr, separator);
@@ -35,8 +31,8 @@ public class SensitivewordFilterUtils {
 
     /**
      * 读取文件形式初始化敏感词库，每行一个敏感词
-     * 
-     * @param filePath
+     *
+     * @param filePath 文件路径
      */
     public SensitivewordFilterUtils(String filePath) {
         sensitiveWordMap = new SensitiveWordInit().initKeyWordByFlie(filePath);
@@ -44,18 +40,15 @@ public class SensitivewordFilterUtils {
 
     /**
      * 判断文字是否包含敏感字符
-     * 
-     * @author chenming
-     * @date 2014年4月20日 下午4:28:30
-     * @param txt 文字
+     *
+     * @param txt       文字
      * @param matchType 匹配规则&nbsp;1：最小匹配规则，2：最大匹配规则
      * @return 若包含返回true，否则返回false
-     * @version 1.0
      */
     public boolean isContaintSensitiveWord(String txt, int matchType) {
         boolean flag = false;
         for (int i = 0; i < txt.length(); i++) {
-            int matchFlag = this.CheckSensitiveWord(txt, i, matchType); //判断是否包含敏感字符
+            int matchFlag = this.checkSensitiveWord(txt, i, matchType); //判断是否包含敏感字符
             if (matchFlag > 0) { //大于0存在，返回true
                 flag = true;
             }
@@ -65,19 +58,16 @@ public class SensitivewordFilterUtils {
 
     /**
      * 获取文字中的敏感词
-     * 
-     * @author chenming
-     * @date 2014年4月20日 下午5:10:52
-     * @param txt 文字
+     *
+     * @param txt       文字
      * @param matchType 匹配规则&nbsp;1：最小匹配规则，2：最大匹配规则
-     * @return
-     * @version 1.0
+     * @return 敏感词集
      */
     public Set<String> getSensitiveWord(String txt, int matchType) {
         Set<String> sensitiveWordList = new HashSet<String>();
 
         for (int i = 0; i < txt.length(); i++) {
-            int length = CheckSensitiveWord(txt, i, matchType); //判断是否包含敏感字符
+            int length = checkSensitiveWord(txt, i, matchType); //判断是否包含敏感字符
             if (length > 0) { //存在,加入list中
                 sensitiveWordList.add(txt.substring(i, i + length));
                 i = i + length - 1; //减1的原因，是因为for会自增
@@ -89,12 +79,10 @@ public class SensitivewordFilterUtils {
 
     /**
      * 替换敏感字字符
-     * 
-     * @param txt 文字
+     *
+     * @param txt       文字
      * @param matchType 匹配规则&nbsp;1：最小匹配规则，2：最大匹配规则
-     * @return
-     * @author Heller.Zhang
-     * @since 2019年4月30日 上午11:30:33
+     * @return 替换后的字符串
      */
     public String replaceSensitiveWord(String txt, int matchType) {
         return replaceSensitiveWord(txt, matchType, "*");
@@ -102,13 +90,11 @@ public class SensitivewordFilterUtils {
 
     /**
      * 替换敏感字字符
-     * 
-     * @author chenming
-     * @date 2014年4月20日 下午5:12:07
-     * @param txt
-     * @param matchType 匹配规则&nbsp;1：最小匹配规则，2：最大匹配规则
+     *
+     * @param txt         源字符串
+     * @param matchType   匹配规则&nbsp;1：最小匹配规则，2：最大匹配规则
      * @param replaceChar 替换字符，默认*
-     * @version 1.0
+     * @return 替换后的字符串
      */
     public String replaceSensitiveWord(String txt, int matchType, String replaceChar) {
         String resultTxt = txt;
@@ -127,13 +113,10 @@ public class SensitivewordFilterUtils {
 
     /**
      * 获取替换字符串
-     * 
-     * @author chenming
-     * @date 2014年4月20日 下午5:21:19
-     * @param replaceChar
-     * @param length
-     * @return
-     * @version 1.0
+     *
+     * @param replaceChar 字符
+     * @param length      长度
+     * @return 指定长度的字符
      */
     private String getReplaceChars(String replaceChar, int length) {
         if (StringUtils.isBlank(replaceChar)) {
@@ -148,18 +131,15 @@ public class SensitivewordFilterUtils {
     }
 
     /**
-     * 检查文字中是否包含敏感字符，检查规则如下：<br>
-     * 
-     * @author chenming
-     * @date 2014年4月20日 下午4:31:03
-     * @param txt
-     * @param beginIndex
-     * @param matchType
-     * @return，如果存在，则返回敏感词字符的长度，不存在返回0
-     * @version 1.0
+     * 检查文字中是否包含敏感字符
+     *
+     * @param txt        源字符
+     * @param beginIndex 开始下标
+     * @param matchType  匹配标识数，匹配一次加1
+     * @return 如果存在，则返回敏感词字符的频次，不存在返回0
      */
-    @SuppressWarnings({ "rawtypes" })
-    public int CheckSensitiveWord(String txt, int beginIndex, int matchType) {
+    @SuppressWarnings({"rawtypes"})
+    public int checkSensitiveWord(String txt, int beginIndex, int matchType) {
         boolean flag = false; //敏感词结束标识位：用于敏感词只有1位的情况
         int matchFlag = 0; //匹配标识数默认为0
         char word = 0;

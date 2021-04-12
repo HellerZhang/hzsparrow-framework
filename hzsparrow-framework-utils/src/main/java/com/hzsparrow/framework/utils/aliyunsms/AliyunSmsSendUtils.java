@@ -36,7 +36,7 @@ public class AliyunSmsSendUtils {
      * @param signName 签名
      * @param templateCode 模板编号
      * @param templateParam 模板数据
-     * @return
+     * @return 回执结果
      * @author Heller.Zhang
      * @since 2019年5月30日 下午4:00:28
      */

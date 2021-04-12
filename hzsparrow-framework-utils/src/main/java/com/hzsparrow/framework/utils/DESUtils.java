@@ -98,7 +98,7 @@ public class DESUtils {
      *
      * @param secretKey 密钥
      * @author sucb
-     * @date 2017年2月28日下午1:17:58
+     *  2017年2月28日下午1:17:58
      */
     public void getKey(String secretKey) {
         try {
@@ -127,7 +127,7 @@ public class DESUtils {
      * @return 加密结果
      * @throws Exception 异常
      * @author sucb
-     * @date 2017年3月2日下午7:47:37
+     *  2017年3月2日下午7:47:37
      */
     public String encrypt(String data, String encryptType) throws Exception {
         Cipher cipher = getPattern(encryptType, ENCRYPT_MODE);
@@ -143,7 +143,7 @@ public class DESUtils {
      * @return 解密结果
      * @throws Exception 异常
      * @author sucb
-     * @date 2017年3月2日下午7:48:21
+     *  2017年3月2日下午7:48:21
      */
     public String decrypt(String data, String decryptType) throws Exception {
         Cipher cipher = getPattern(decryptType, DECRYPT_MODE);
@@ -159,7 +159,7 @@ public class DESUtils {
      * @return cipher
      * @throws Exception 异常
      * @author sucb
-     * @date 2017年3月2日下午7:49:16
+     *  2017年3月2日下午7:49:16
      */
     private Cipher getPattern(String type, int cipherMode) throws Exception {
         Cipher cipher;
@@ -192,7 +192,7 @@ public class DESUtils {
      * @param encryptType 加密模式 (ECB/CBC/OFB/CFB)
      * @return 加密结果   0：异常 1：加密成功； 5：未找到需要加密的文件
      * @author sucb
-     * @date 2017年3月2日下午7:56:08
+     *  2017年3月2日下午7:56:08
      */
     public int encryptFile(String file, String destFile, String encryptType) {
         int result = 0;
@@ -226,7 +226,7 @@ public class DESUtils {
      * @param decryptType 解密模式 (ECB/CBC/OFB/CFB)
      * @return 解密结果 0：解密异常；1：解密正常；5：未找到需要解密的文件
      * @author sucb
-     * @date 2017年3月2日下午7:58:56
+     *  2017年3月2日下午7:58:56
      */
     public int decryptFile(String file, String destFile, String decryptType) {
         int result = 0;

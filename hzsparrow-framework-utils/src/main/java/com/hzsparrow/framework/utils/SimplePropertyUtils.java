@@ -16,7 +16,7 @@ import java.util.Map;
  * Apache PropertyUtils的等价类，只是将check exception改为uncheck exception
  * 
  * @author badqiu
- * @author Jades.He
+ * @author HellerZhang
  * @since 2014.06.25
  */
 public class SimplePropertyUtils {

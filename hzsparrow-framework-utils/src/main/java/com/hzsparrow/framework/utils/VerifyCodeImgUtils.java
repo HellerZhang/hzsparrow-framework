@@ -199,7 +199,7 @@ public class VerifyCodeImgUtils {
      * @param h
      * @param os
      * @param code
-     * @param resp
+     * @param response
      * @throws IOException
      */
     public static void outputImage(int w, int h, OutputStream os, String code, HttpServletResponse response)

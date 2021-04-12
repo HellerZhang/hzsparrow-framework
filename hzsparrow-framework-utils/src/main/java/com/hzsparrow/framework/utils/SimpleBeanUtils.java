@@ -24,7 +24,7 @@ import java.util.Map;
  * Apache BeanUtils的等价类，只是将check exception改为uncheck exception
  *
  * @author badqiu
- * @author Jades.He
+ * @author HellerZhang
  * @since 2014.06.25
  */
 public class SimpleBeanUtils {
@@ -61,8 +61,9 @@ public class SimpleBeanUtils {
      *
      * @param destClass Destination class
      * @param orig      Origin bean whose properties are retrieved
+     * @param <T> 指定类型
      * @return instance of the destination class
-     * @author Jades.He
+     * @author HellerZhang
      */
     @SuppressWarnings("unchecked")
     public static <T> T copyProperties(Class<T> destClass, Object orig) {

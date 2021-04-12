@@ -74,7 +74,7 @@ public class ResponseSetterUtils {
     /**
      * 设置响应信息的contentType和charsetEncoding
      * 
-     * @param response
+     * @param response response
      * @param contentType 可从静态变量中选取
      * @param charsetEncoding 可从静态变量中选取
      * @author Heller.Zhang
@@ -88,7 +88,7 @@ public class ResponseSetterUtils {
     /**
      * 设置响应信息的contentType，charsetEncoding为UTF-8
      * 
-     * @param response
+     * @param response response
      * @param fileName 文件名称（需带后缀）
      * @author Heller.Zhang
      * @since 2019年5月27日 下午6:55:35
@@ -125,8 +125,8 @@ public class ResponseSetterUtils {
     /**
      * 将文件流写入到响应中
      * 
-     * @param response
-     * @param filePath
+     * @param response response
+     * @param filePath 文件路径
      * @author Heller.Zhang
      * @since 2019年5月27日 下午6:56:58
      */

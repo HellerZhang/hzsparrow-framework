@@ -46,7 +46,7 @@ public class NumberUtils {
     /**
      * 字符串转换为Integer
      * 
-     * @param str 字符串
+     * @param obj 字符串
      * @param def 默认值
      * @return Integer, 字符串为null时返回def
      */
@@ -69,7 +69,7 @@ public class NumberUtils {
     /**
      * 字符串转换为Long
      * 
-     * @param str 字符串
+     * @param obj 字符串
      * @return Long, str为null时返回0
      */
     public static Long getLong(Object obj) {
@@ -79,7 +79,7 @@ public class NumberUtils {
     /**
      * 字符串转换为Long
      * 
-     * @param str 字符串
+     * @param obj 字符串
      * @param def 默认值
      * @return Long, 字符串为null时返回def
      */
@@ -102,7 +102,7 @@ public class NumberUtils {
     /**
      * 字符串转换为Integer
      * 
-     * @param str 字符串
+     * @param obj 字符串
      * @return Integer, str为null时返回0
      */
     public static int getIntegerValue(Object obj) {
@@ -112,7 +112,7 @@ public class NumberUtils {
     /**
      * 字符串转换为Integer
      * 
-     * @param str 字符串
+     * @param obj 字符串
      * @param def 默认值
      * @return Integer, 字符串为null时返回def
      */
@@ -123,7 +123,7 @@ public class NumberUtils {
     /**
      * 字符串转换为Long
      * 
-     * @param str 字符串
+     * @param obj 字符串
      * @return Long, str为null时返回0
      */
     public static long getLongValue(Object obj) {
@@ -133,7 +133,7 @@ public class NumberUtils {
     /**
      * 字符串转换为Long
      * 
-     * @param str 字符串
+     * @param obj 字符串
      * @param def 默认值
      * @return Long, 字符串为null时返回def
      */

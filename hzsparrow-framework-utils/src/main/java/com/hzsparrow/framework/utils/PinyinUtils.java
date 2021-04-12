@@ -53,7 +53,7 @@ public class PinyinUtils {
      * 
      * @param ch 汉字
      * @return 拼音
-     * @author jades.he 2014-8-28
+     * @author HellerZhang 2014-8-28
      */
     public static String getCharPinyin(char ch) {
         HanyuPinyinOutputFormat format = getDefaultOutputFormat();
@@ -74,7 +74,7 @@ public class PinyinUtils {
      * 
      * @param chinese 汉语字符串
      * @return 汉语拼音
-     * @author jades.he 2014-8-28
+     * @author HellerZhang 2014-8-28
      */
     public static String getFull(String chinese) {
         if (StringUtils.isBlank(chinese)) {
@@ -105,7 +105,7 @@ public class PinyinUtils {
      * 
      * @param chinese 汉语字符串
      * @return 汉语拼音的大写首字母
-     * @author jades.he 2014-8-28
+     * @author HellerZhang 2014-8-28
      */
     public static String getSpell(String chinese) {
         if (StringUtils.isBlank(chinese)) {
@@ -134,8 +134,8 @@ public class PinyinUtils {
     /**
      * 获取大写的首字母
      * 
-     * @param chinese
-     * @return
+     * @param chinese 中文字符串
+     * @return 大写的首字母
      * @author Heller.Zhang
      * @since 2019年6月12日 下午7:27:43
      */

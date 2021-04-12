@@ -22,13 +22,13 @@ public class FileUtils {
     /**
      * 移动文件到指定路径
      *
-     * @param srcFile
-     * @param destPath
-     * @return
+     * @param srcFile  源目录
+     * @param destPath 指定路径
+     * @return 移动结果
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:03:28
      */
-    public static boolean Move(File srcFile, String destPath) {
+    public static boolean move(File srcFile, String destPath) {
         File dir = new File(destPath);
         boolean success = srcFile.renameTo(new File(dir, srcFile.getName()));
         return success;
@@ -37,13 +37,13 @@ public class FileUtils {
     /**
      * 移动文件到指定路径
      *
-     * @param srcFile
-     * @param destPath
-     * @return
+     * @param srcFile  原路径
+     * @param destPath 目标路径
+     * @return 移动结果
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:03:51
      */
-    public static boolean Move(String srcFile, String destPath) {
+    public static boolean move(String srcFile, String destPath) {
         File file = new File(srcFile);
         File dir = new File(destPath);
         boolean success = file.renameTo(new File(dir, file.getName()));
@@ -53,26 +53,25 @@ public class FileUtils {
     /**
      * 复制文件到指定路径
      *
-     * @param oldPath
-     * @param newPath
-     * @throws IOException
+     * @param oldPath 旧路径
+     * @param newPath 新路径
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:04:04
      */
-    public static void Copy(String oldPath, String newPath) throws IOException {
+    public static void copy(String oldPath, String newPath) {
         File oldfile = new File(oldPath);
-        Copy(oldfile, newPath);
+        copy(oldfile, newPath);
     }
 
     /**
      * 复制文件到指定路径
      *
-     * @param oldfile
-     * @param newPath
+     * @param oldfile 旧路径
+     * @param newPath 新路径
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:04:13
      */
-    public static void Copy(File oldfile, String newPath) {
+    public static void copy(File oldfile, String newPath) {
         try {
             int byteread = 0;
             if (oldfile.exists()) {
@@ -95,7 +94,7 @@ public class FileUtils {
     /**
      * 删除空目录
      *
-     * @param dir
+     * @param dir 目录
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:05:05
      */
@@ -111,8 +110,8 @@ public class FileUtils {
     /**
      * 删除指定目录及其下的子目录和文件
      *
-     * @param dirPath
-     * @return
+     * @param dirPath 目录
+     * @return boolean
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:05:25
      */
@@ -123,8 +122,8 @@ public class FileUtils {
     /**
      * 递归删除目录下的所有文件及子目录下所有文件
      *
-     * @param dir
-     * @return
+     * @param dir 目录
+     * @return boolean
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:05:40
      */
@@ -146,9 +145,9 @@ public class FileUtils {
     /**
      * 获取文件内容的字节数组
      *
-     * @param filePath
-     * @return
-     * @throws IOException
+     * @param filePath 文件路径
+     * @return 文件的字节数组
+     * @throws IOException IOException
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:09:14
      */
@@ -169,11 +168,9 @@ public class FileUtils {
     /**
      * 读取文件的字节数组
      *
-     * @param file
-     * @return
-     * @throws IOException
-     * @author Heller.Zhang
-     * @since 2019年5月7日 上午9:06:12
+     * @param file 文件路径
+     * @return 字节数组
+     * @throws IOException IOException
      */
     public static byte[] getByteArray(String file) throws IOException {
         File f = new File(file);
@@ -207,9 +204,9 @@ public class FileUtils {
     /**
      * 将byte数组写入文件
      *
-     * @param path
-     * @param content
-     * @throws IOException
+     * @param path    文件路径
+     * @param content 内容
+     * @throws IOException IOException
      * @author Heller.Zhang
      * @since 2019年5月7日 上午9:06:02
      */
@@ -229,8 +226,8 @@ public class FileUtils {
      * 获取源文件的绝对地址
      *
      * @param relativePath 源文件相对地址
-     * @return
-     * @throws IOException
+     * @return 绝对地址
+     * @throws IOException IOException
      * @author Heller.Zhang
      * @since 2019年5月27日 下午6:39:27
      */
@@ -242,8 +239,8 @@ public class FileUtils {
      * 获取classpath下的源文件
      *
      * @param relativePath 源文件相对地址
-     * @return
-     * @throws IOException
+     * @return 源文件
+     * @throws IOException IOException
      * @author Heller.Zhang
      * @since 2019年5月27日 下午6:39:45
      */
@@ -255,9 +252,9 @@ public class FileUtils {
     /**
      * 合并可排序的文件，文件名应以 【序号-名称】 格式命名
      *
-     * @param rootPath
-     * @param outputPath
-     * @return
+     * @param rootPath   根路径
+     * @param outputPath 输出路径
+     * @return boolean
      * @author Heller.Zhang
      * @since 2019年7月25日 下午3:28:56
      */
@@ -282,9 +279,9 @@ public class FileUtils {
     /**
      * 合并指定目录下的文件
      *
-     * @param rootPath
-     * @param outputPath
-     * @return
+     * @param rootPath   根目录
+     * @param outputPath 输出目录
+     * @return 合并结果
      * @author Heller.Zhang
      * @since 2019年7月25日 下午3:30:26
      */
@@ -296,9 +293,10 @@ public class FileUtils {
     /**
      * 合并指定文件
      *
-     * @param filePath
-     * @param outputPath
-     * @return
+     * @param rootPath   根路径
+     * @param filePath   文件列表
+     * @param outputPath 输出路径
+     * @return 合并结果
      * @author Heller.Zhang
      * @since 2019年7月25日 下午3:24:22
      */

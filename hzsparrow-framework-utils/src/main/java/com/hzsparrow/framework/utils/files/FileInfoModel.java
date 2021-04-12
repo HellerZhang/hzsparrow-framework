@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * 存储文件信息的实体
  * 
- * @author EmilyWang
+ * @author HellerZhang
  * @since 2017年10月16日 下午7:45:47
  */
 public class FileInfoModel implements Serializable {
@@ -23,28 +23,28 @@ public class FileInfoModel implements Serializable {
     /**
      * 旧名字
      *
-     * @mbg.generated 2017-10-06 08:32:35
+     *  2017-10-06 08:32:35
      */
     private String oldName;
 
     /**
      * 新名字
      *
-     * @mbg.generated 2017-10-06 08:32:35
+     *  2017-10-06 08:32:35
      */
     private String newName;
 
     /**
      * 存储路径
      *
-     * @mbg.generated 2017-10-06 08:32:35
+     *  2017-10-06 08:32:35
      */
     private String path;
 
     /**
      * 上传时间
      *
-     * @mbg.generated 2017-10-06 08:32:35
+     *  2017-10-06 08:32:35
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date uploadTime;
@@ -52,7 +52,7 @@ public class FileInfoModel implements Serializable {
     /**
      * 字节大小
      *
-     * @mbg.generated 2017-10-06 08:32:35
+     *  2017-10-06 08:32:35
      */
     private Long byteSize;
 

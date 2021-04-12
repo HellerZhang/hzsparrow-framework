@@ -20,7 +20,7 @@ import java.util.GregorianCalendar;
 /**
  * CalendarUtils
  *
- * @author Jades.He
+ * @author HellerZhang
  * @since 2014.11.20
  */
 public class CalendarUtils extends DateUtils {
@@ -106,7 +106,7 @@ public class CalendarUtils extends DateUtils {
      * @param date1 the first date, not altered
      * @param date2 the second date, not altered
      * @return true if they represent the same day
-     * @author jades.he 2014-9-4
+     * @author HellerZhang 2014-9-4
      */
     public static boolean isSameDayIgnoreYear(final Date date1, final Date date2) {
         if (date1 == null || date2 == null) {
@@ -148,10 +148,10 @@ public class CalendarUtils extends DateUtils {
     /**
      * 将Date对象格式化为用户指定格式的字符串
      *
-     * @param date
-     * @param pattern
-     * @return
-     * @author Dong
+     * @param date    时间
+     * @param pattern 格式
+     * @return 时间字符串
+     * @author HellerZhang
      * @since 2017年3月7日 上午11:43:58
      */
     public static String formatDate(Date date, String pattern) {
@@ -196,9 +196,9 @@ public class CalendarUtils extends DateUtils {
     /**
      * 格式化为中文年月 二〇一七年三月
      *
-     * @param date
-     * @return
-     * @author Leon.Dong
+     * @param date 时间
+     * @return 汉字时间
+     * @author HellerZhang
      * @since 2017年3月6日 下午5:03:04
      */
     public static String formatDateOfCnMonth(Date date) {
@@ -270,9 +270,9 @@ public class CalendarUtils extends DateUtils {
     /**
      * 获得日期与今年相差的年份数，如年龄
      *
-     * @param date
+     * @param date 时间
      * @return int
-     * @author Dong
+     * @author HellerZhang
      * @since 2017年3月7日 上午11:42:38
      */
     public static int getYearDifference(Date date) {
@@ -282,10 +282,10 @@ public class CalendarUtils extends DateUtils {
     /**
      * 获得两个日期之间相差的年数
      *
-     * @param date1
-     * @param date2
-     * @return int
-     * @author Leon.Dong
+     * @param date1 开始时间
+     * @param date2 结束时间
+     * @return 年数差
+     * @author HellerZhang
      * @since 2017年3月6日 下午5:03:53
      */
     public static int getYearDifference(Date date1, Date date2) {
@@ -304,10 +304,10 @@ public class CalendarUtils extends DateUtils {
     /**
      * 计算两个日期之间的月份差
      *
-     * @param date1
-     * @param date2
-     * @return
-     * @author Leon.Dong
+     * @param date1 开始时间
+     * @param date2 结束时间
+     * @return 月份差
+     * @author HellerZhang
      * @since 2017年3月6日 下午5:03:45
      */
     public static int getMonthDifference(Date date1, Date date2) {
@@ -323,9 +323,9 @@ public class CalendarUtils extends DateUtils {
     /**
      * 计算两个日期之间的天数差
      *
-     * @param start
-     * @param end
-     * @return
+     * @param start 开始时间
+     * @param end   结束时间
+     * @return 天数差
      */
     public static int getDayDifference(Date start, Date end) {
         try {
@@ -338,10 +338,10 @@ public class CalendarUtils extends DateUtils {
     /**
      * 计算指定秒后的时间
      *
-     * @param date
-     * @param amount
-     * @return
-     * @author Leon.Dong
+     * @param date   指定时间
+     * @param amount 秒数
+     * @return 计算时间
+     * @author HellerZhang
      * @since 2017年3月6日 下午5:04:11
      */
     public static Date DateAddSecond(Date date, Integer amount) {
@@ -357,7 +357,7 @@ public class CalendarUtils extends DateUtils {
      * @param date Date
      * @param day  天数
      * @return Date
-     * @author 何珏 2014-11-20
+     * @author HellerZhang
      */
     public static Date addDays(Date date, int day) {
         Calendar cal = Calendar.getInstance();
@@ -401,9 +401,9 @@ public class CalendarUtils extends DateUtils {
     /**
      * 获取指定日期的 当周开始时间
      *
-     * @param date
-     * @return
-     * @author Leon
+     * @param date 指定日期
+     * @return 当周开始时间
+     * @author HellerZhang
      * @since 2017年6月21日 下午4:56:24
      */
     public static Date getStartDateOfWeek(Date date) {
@@ -425,9 +425,9 @@ public class CalendarUtils extends DateUtils {
     /**
      * 获取指定日期的 当周结束时间
      *
-     * @param date
-     * @return
-     * @author Leon
+     * @param date 指定日期
+     * @return 当周结束时间
+     * @author HellerZhang
      * @since 2017年6月21日 下午4:56:46
      */
     public static Date getEndDateOfWeek(Date date) {
@@ -443,9 +443,9 @@ public class CalendarUtils extends DateUtils {
     /**
      * 获取指定日期的 当月的开始时间
      *
-     * @param date
-     * @return
-     * @author Leon
+     * @param date 指定日期
+     * @return 当月开始时间
+     * @author HellerZhang
      * @since 2017年6月21日 下午5:12:01
      */
     public static Date getStartDateOfMonth(Date date) {
@@ -465,10 +465,8 @@ public class CalendarUtils extends DateUtils {
     /**
      * 获取指定日期的 当月的结束时间
      *
-     * @param date
-     * @return
-     * @author Leon
-     * @since 2017年6月21日 下午5:11:45
+     * @param date 指定日期
+     * @return 当月结束时间
      */
     public static Date getEndDateOfMonth(Date date) {
         if (date == null) {
@@ -484,10 +482,10 @@ public class CalendarUtils extends DateUtils {
     }
 
     /**
-     * @return Date
-     * @Title getCurTime
-     * @Description: 从中国科学院国家授时中心获取当前时间
-     * @author: Wang Mei
+     * 从中国科学院国家授时中心获取当前时间
+     *
+     * @param isDebug 是否测试状态（0否1是）
+     * @return 测试状态下返回本机时间，否则返回国家授时中心时间
      */
     public static Date getCurTime(int isDebug) {
         if (isDebug == 1) {

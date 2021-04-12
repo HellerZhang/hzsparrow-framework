@@ -20,9 +20,9 @@ public class RegexUtils {
     /**
      * 正则表达式获取匹配到的内容
      * 
-     * @param regex
-     * @param source
-     * @return
+     * @param regex 表达式
+     * @param source 字符串源
+     * @return 匹配结果
      * @author Heller.Zhang
      * @since 2019年6月12日 下午12:25:53
      */
@@ -42,9 +42,9 @@ public class RegexUtils {
     /**
      * 判断是否匹配
      * 
-     * @param regex
-     * @param source
-     * @return
+     * @param regex 表达式
+     * @param source 字符串源
+     * @return boolean 匹配结果
      * @author Heller.Zhang
      * @since 2019年6月13日 下午7:53:06
      */

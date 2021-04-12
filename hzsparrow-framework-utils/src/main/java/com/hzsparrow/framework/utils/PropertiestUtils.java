@@ -25,9 +25,9 @@ public class PropertiestUtils {
     /**
      * 读取配置文件中的配置信息
      * 
-     * @param fileName
-     * @param properties
-     * @return
+     * @param fileName 文件名
+     * @param properties 指定配置名
+     * @return 配置值列表
      * @author Heller.Zhang
      * @since 2019年8月9日 下午2:28:32
      */

@@ -17,7 +17,7 @@ import java.net.SocketException;
 /**
  * FTP 工具类 从FTP服务器读取文件
  * 
- * @author leon
+ * @author HellerZhang
  * @since 2017年3月30日 上午10:30:00
  */
 public class ReadFTPFile {
@@ -71,7 +71,7 @@ public class ReadFTPFile {
      * 
      * @param ftpPath
      * @return InputStream
-     * @author EmilyWang
+     * @author HellerZhang
      * @since 2017年10月25日 下午2:43:08
      */
     public InputStream readFileForFTP(String ftpPath) {

@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 /**
  * FTP 工具类，完成ftp连接的建立
  * 
- * @author leon
+ * @author HellerZhang
  * @since 2017年3月30日 上午10:29:23
  */
 public class FTPUtil {

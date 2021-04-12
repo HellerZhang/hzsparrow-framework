@@ -7,7 +7,7 @@ package com.hzsparrow.framework.utils;
 import java.io.*;
 
 /**
- * @author Einstein.Liu
+ * @author HellerZhang
  * @since 2019年7月11日 下午6:48:54
  */
 public class TextReaderUtil {

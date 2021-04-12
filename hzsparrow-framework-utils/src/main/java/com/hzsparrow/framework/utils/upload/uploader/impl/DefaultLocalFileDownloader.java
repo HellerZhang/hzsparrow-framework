@@ -32,8 +32,8 @@ public class DefaultLocalFileDownloader implements FileDownloader {
     @Override
     public void downloadToLocal(String destFileName, String destFolder, String filePath) {
         try {
-            FileUtils.Copy(rootPath + File.separator + filePath, destFolder + File.separator + destFileName);
-        } catch (IOException e) {
+            FileUtils.copy(rootPath + File.separator + filePath, destFolder + File.separator + destFileName);
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("下载文件到本地失败！", e);
         }

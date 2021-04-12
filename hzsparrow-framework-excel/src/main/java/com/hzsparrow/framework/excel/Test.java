@@ -17,7 +17,7 @@ public class Test {
             if (!workbook.getClass().getName().equals(workbook2.getClass().getName())) {
                 throw new RuntimeException("不同类型的文件不能相互转换！");
             }
-            ExcelOptionsUtils.copySheetTo(new Sheet[]{sheet1, sheet2}, new String[]{"sheet1", "sheet2"}, "D:\\test\\test\\test3.xls");
+            ExcelOptionsUtils.copySheetTo(new Sheet[]{sheet1, sheet2}, new String[]{"sheet1", "sheet2"}, "D:\\test\\test\\test3.xls", false, null);
             // 合并xlsx
         } catch (IOException e) {
             e.printStackTrace();

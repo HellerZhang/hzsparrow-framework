@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 执行命令工具类
  * 
- * @author Mia.Guo
+ * @author HellerZhang
  * @since 2019年6月28日 下午3:50:14
  */
 public class CMDUtil {
@@ -72,9 +72,9 @@ public class CMDUtil {
     /**
      * 执行文件命令（Windows、Linux都可以）
      * 
-     * @param file
-     * @return
-     * @author Mia.Guo
+     * @param file 指定命令文件
+     * @return 命令行输出的数据
+     * @author HellerZhang
      * @since 2019年6月28日 下午4:12:06
      */
     public static String excuteFile(String file) {
@@ -128,8 +128,8 @@ public class CMDUtil {
     /**
      * 一次性执行多条linux命令
      * 
-     * @param commands
-     * @return
+     * @param commands 命令列表
+     * @return 命令行打印的结果
      * @author Heller.Zhang
      * @since 2019年7月15日 上午8:57:50
      */

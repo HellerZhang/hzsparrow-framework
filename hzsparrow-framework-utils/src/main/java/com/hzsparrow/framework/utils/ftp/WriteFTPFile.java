@@ -16,7 +16,7 @@ import java.io.InputStream;
 /**
  * ftp 工具类 写入文件到ftp服务器
  * 
- * @author leon
+ * @author HellerZhang
  * @since 2017年3月30日 上午10:31:29
  */
 public class WriteFTPFile {

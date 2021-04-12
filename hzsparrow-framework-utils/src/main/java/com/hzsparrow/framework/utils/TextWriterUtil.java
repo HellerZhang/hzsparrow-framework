@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 
 /**
- * @author Einstein.Liu
+ * @author HellerZhang
  * @since 2019年7月11日 下午6:55:02
  */
 public class TextWriterUtil {
@@ -64,7 +64,7 @@ public class TextWriterUtil {
     /**
      * 将字符串写入到文件中，此方法将覆盖原文件内容
      *
-     * @param file
+     * @param fos
      * @param text
      * @return
      */

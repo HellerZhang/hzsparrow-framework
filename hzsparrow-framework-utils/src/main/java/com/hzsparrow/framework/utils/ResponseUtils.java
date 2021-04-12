@@ -19,8 +19,8 @@ public final class ResponseUtils {
     /**
      * 写入文字
      * 
-     * @param response
-     * @param text
+     * @param response response
+     * @param text 文字
      * @author Heller.Zhang
      * @since 2019年3月6日 上午9:35:34
      */
@@ -31,8 +31,8 @@ public final class ResponseUtils {
     /**
      * 写入json串
      * 
-     * @param response
-     * @param text
+     * @param response response
+     * @param text json串
      * @author Heller.Zhang
      * @since 2019年3月6日 上午9:35:43
      */
@@ -43,8 +43,8 @@ public final class ResponseUtils {
     /**
      * 写入xml
      * 
-     * @param response
-     * @param text
+     * @param response response
+     * @param text xml
      * @author Heller.Zhang
      * @since 2019年3月6日 上午9:35:57
      */
