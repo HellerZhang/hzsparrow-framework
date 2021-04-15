@@ -4,6 +4,10 @@
  */
 package com.hzsparrow.framework.utils;
 
+import com.hzsparrow.framework.utils.upload.uploader.impl.DefaultFileNameConverter;
+import com.hzsparrow.framework.utils.upload.uploader.interfaces.FileNameConverter;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -13,7 +17,7 @@ import java.net.URLEncoder;
 
 /**
  * 响应信息设置类
- * 
+ *
  * @author Heller.Zhang
  * @since 2019年5月27日 下午6:52:36
  */
@@ -71,11 +75,13 @@ public class ResponseSetterUtils {
 
     public static final String CHARSET_GBK = "GBK";
 
+    private static FileNameConverter fileNameConverter = new DefaultFileNameConverter();
+
     /**
      * 设置响应信息的contentType和charsetEncoding
-     * 
-     * @param response response
-     * @param contentType 可从静态变量中选取
+     *
+     * @param response        response
+     * @param contentType     可从静态变量中选取
      * @param charsetEncoding 可从静态变量中选取
      * @author Heller.Zhang
      * @since 2019年5月27日 下午6:53:39
@@ -87,16 +93,27 @@ public class ResponseSetterUtils {
 
     /**
      * 设置响应信息的contentType，charsetEncoding为UTF-8
-     * 
+     *
+     * @param response response
+     * @param fileName 文件名称（需带后缀）
+     */
+    public static void setUtf8ContentType(HttpServletResponse response, String fileName) {
+        setUtf8ContentType(null, response, fileName);
+    }
+
+    /**
+     * 设置响应信息的contentType，charsetEncoding为UTF-8
+     *
+     * @param request  request
      * @param response response
      * @param fileName 文件名称（需带后缀）
      * @author Heller.Zhang
      * @since 2019年5月27日 下午6:55:35
      */
-    public static void setUtf8ContentType(HttpServletResponse response, String fileName) {
+    public static void setUtf8ContentType(HttpServletRequest request, HttpServletResponse response, String fileName) {
         try {
-            response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
+            response.setHeader("Content-Disposition", "attachment;filename=\"".concat(fileNameConverter.getConvertedFileName(request, fileName)).concat("\""));
+        } catch (Exception e) {
             throw new RuntimeException("设置文件名称失败！", e);
         }
         String fileSuffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()).toLowerCase();
@@ -124,7 +141,7 @@ public class ResponseSetterUtils {
 
     /**
      * 将文件流写入到响应中
-     * 
+     *
      * @param response response
      * @param filePath 文件路径
      * @author Heller.Zhang
